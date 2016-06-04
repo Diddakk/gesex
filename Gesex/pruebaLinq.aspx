@@ -1,9 +1,15 @@
-﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctlMostrarAsignaturas.ascx.vb" Inherits="Gesex.ctlMostrarAsignaturas" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="pruebaLinq.aspx.vb" Inherits="Gesex.pruebaLinq" %>
 
-<div>
-    <h3>Asignaturas</h3>
-    <asp:Button ID="refrescarAsignaturasButton" Text="Refrescar Asignaturas" runat="server" OnClick="refrescarAsignaturasEventMethod" CausesValidation="False" />
-    <asp:ListView ID="AsignaturasListView" runat="server" >
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ListView ID="AsignaturasListView" runat="server" >
         <EmptyDataTemplate>
             <span>No está inscrito en ninguna asignatura.</span>
         </EmptyDataTemplate>
@@ -25,7 +31,7 @@
             </li>
         </SelectedItemTemplate>
     </asp:ListView>
-    
-</div>
 
-
+    </form>
+</body>
+</html>

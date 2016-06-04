@@ -1,17 +1,13 @@
-﻿Public Class ctlMostrarAsignaturas
-    Inherits System.Web.UI.UserControl
+﻿Public Class pruebaLinq
+    Inherits System.Web.UI.Page
+
     Dim nombreUsuario As String = String.Empty
     Dim tipo As String = String.Empty
     Dim asignaturaElegida As String = String.Empty
     Dim listaAsignaturas As List(Of asignatura)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        nombreUsuario = CStr(Session("s_nombre"))
-        tipo = CStr(Session("s_tipo"))
-        muestraAsignatura()
-    End Sub
-
-    Protected Sub refrescarAsignaturasEventMethod(ByVal sender As Object, ByVal e As System.EventArgs) Handles refrescarAsignaturasButton.Click
+        nombreUsuario = "profe1"
         muestraAsignatura()
     End Sub
 
@@ -25,6 +21,7 @@
 
         AsignaturasListView.DataSource = listaAsignaturas
         AsignaturasListView.DataBind()
+
     End Sub
 
     Protected Sub CommandBtn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles AsignaturasListView.SelectedIndexChanged
