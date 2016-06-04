@@ -126,6 +126,11 @@
   <ItemGroup>
     <Content Include="Alumno\Alumno.aspx" />
     <Content Include="Alumno\AsignaturaAlumno.aspx" />
+    <Content Include="content\css\bootstrap-theme.css" />
+    <Content Include="content\css\bootstrap-theme.min.css" />
+    <Content Include="content\css\bootstrap.css" />
+    <Content Include="content\css\bootstrap.min.css" />
+    <Content Include="content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Cuenta\Registro.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -135,7 +140,10 @@
     <Content Include="Profesor\Profesor.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-2.2.4.js" />
+    <Content Include="scripts\npm.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -237,6 +245,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="content\css\bootstrap-theme.css.map" />
+    <Content Include="content\css\bootstrap-theme.min.css.map" />
+    <Content Include="content\css\bootstrap.css.map" />
+    <Content Include="content\css\bootstrap.min.css.map" />
+    <Content Include="content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
