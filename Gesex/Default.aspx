@@ -73,7 +73,7 @@
 
     </asp:PlaceHolder>
 
-
+    <a href="pruebaLinq.aspx">pruebaLinq.aspx</a>
 
 
 </asp:Content>
