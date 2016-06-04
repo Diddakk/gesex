@@ -1,0 +1,32 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Site.master.vb" Inherits="Gesex.Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="Head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <form id="form1" runat="server">
+        <header>
+            <h2>GESEX</h2>
+            <%If Not String.IsNullOrWhiteSpace(Session("s_nombre")) Then%>
+            <asp:Label ID="usuarioLabel" Text="Usuario no válido" runat="server" />
+            <asp:Button ID="logoutButton" Text="Salir" runat="server" OnClick="logoutEventMethod" CausesValidation="False" />            
+            <%End If %>
+        </header>
+        <div>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+    <footer>
+        <p>Desarrollado por Diego Rivera Riera</p>
+        <p>2014</p>
+    </footer>
+</body>
+</html>
