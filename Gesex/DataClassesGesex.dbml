@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="bdgesex" Class="DataClassesGesexDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=gesex.database.windows.net;Initial Catalog=bdgesex;User ID=admin_gesex" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="bdgesexConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.asignatura" Member="asignatura">
+    <Type Name="asignatura">
+      <Column Name="clave_asignatura" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_asignatura" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Association Name="asignatura_examen" Member="examen" ThisKey="clave_asignatura" OtherKey="clave_asignatura" Type="examen" />
+      <Association Name="asignatura_usuario_cursa_asignatura" Member="usuario_cursa_asignatura" ThisKey="clave_asignatura" OtherKey="clave_asignatura" Type="usuario_cursa_asignatura" />
+    </Type>
+  </Table>
+  <Table Name="dbo.usuario_hace_examen" Member="usuario_hace_examen">
+    <Type Name="usuario_hace_examen">
+      <Column Name="nombre_usuario" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_examen" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nota_hace" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="examen_usuario_hace_examen" Member="examen" ThisKey="id_examen" OtherKey="id_examen" Type="examen" IsForeignKey="true" />
+      <Association Name="usuario_usuario_hace_examen" Member="usuario" ThisKey="nombre_usuario" OtherKey="nombre_usuario" Type="usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.examen" Member="examen">
+    <Type Name="examen">
+      <Column Name="id_examen" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fecha_examen" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="clave_asignatura" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha_creacion" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="nombre_examen" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Association Name="examen_usuario_hace_examen" Member="usuario_hace_examen" ThisKey="id_examen" OtherKey="id_examen" Type="usuario_hace_examen" />
+      <Association Name="examen_pregunta" Member="pregunta" ThisKey="id_examen" OtherKey="id_examen" Type="pregunta" />
+      <Association Name="asignatura_examen" Member="asignatura" ThisKey="clave_asignatura" OtherKey="clave_asignatura" Type="asignatura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pregunta" Member="pregunta">
+    <Type Name="pregunta">
+      <Column Name="id_examen" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_pregunta" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="texto_pregunta" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha_pregunta" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="pregunta_respuesta" Member="respuesta" ThisKey="id_examen,id_pregunta" OtherKey="id_examen,id_pregunta" Type="respuesta" />
+      <Association Name="examen_pregunta" Member="examen" ThisKey="id_examen" OtherKey="id_examen" Type="examen" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.respuesta" Member="respuesta">
+    <Type Name="respuesta">
+      <Column Name="id_examen" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_pregunta" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_respuesta" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="texto_respuesta" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="pregunta_respuesta" Member="pregunta" ThisKey="id_examen,id_pregunta" OtherKey="id_examen,id_pregunta" Type="pregunta" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.usuario" Member="usuario">
+    <Type Name="usuario">
+      <Column Name="nombre_usuario" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="password_usuario" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="tipo_usuario" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Association Name="usuario_usuario_hace_examen" Member="usuario_hace_examen" ThisKey="nombre_usuario" OtherKey="nombre_usuario" Type="usuario_hace_examen" />
+      <Association Name="usuario_usuario_cursa_asignatura" Member="usuario_cursa_asignatura" ThisKey="nombre_usuario" OtherKey="nombre_usuario" Type="usuario_cursa_asignatura" />
+    </Type>
+  </Table>
+  <Table Name="dbo.usuario_cursa_asignatura" Member="usuario_cursa_asignatura">
+    <Type Name="usuario_cursa_asignatura">
+      <Column Name="clave_asignatura" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_usuario" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="asignatura_usuario_cursa_asignatura" Member="asignatura" ThisKey="clave_asignatura" OtherKey="clave_asignatura" Type="asignatura" IsForeignKey="true" />
+      <Association Name="usuario_usuario_cursa_asignatura" Member="usuario" ThisKey="nombre_usuario" OtherKey="nombre_usuario" Type="usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
