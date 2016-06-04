@@ -79,6 +79,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -138,6 +139,7 @@
     <Content Include="include\ctlMostrarAsignaturas.ascx" />
     <Content Include="Profesor\AsignaturaProfesor.aspx" />
     <Content Include="Profesor\Profesor.aspx" />
+    <Content Include="pruebaLinq.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -167,6 +169,11 @@
     <Compile Include="Cuenta\Registro.aspx.vb">
       <DependentUpon>Registro.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="DataClassesGesex.designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClassesGesex.dbml</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -225,6 +232,13 @@
       <DependentUpon>Profesor.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="pruebaLinq.aspx.designer.vb">
+      <DependentUpon>pruebaLinq.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pruebaLinq.aspx.vb">
+      <DependentUpon>pruebaLinq.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Site.Master.designer.vb">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
@@ -234,6 +248,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataClassesGesex.dbml.layout">
+      <DependentUpon>DataClassesGesex.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -253,6 +270,11 @@
     <Content Include="content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="DataClassesGesex.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClassesGesex.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -271,6 +293,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
