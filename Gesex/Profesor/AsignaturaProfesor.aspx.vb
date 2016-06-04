@@ -16,7 +16,7 @@
 
     Private Sub crearExamen()
 
-        MsgBox("TODO insert")
+        MsgBox("TODO insert antes de Linq")
 
     End Sub
 
