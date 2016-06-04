@@ -16,7 +16,7 @@
 
     Private Sub crearExamen()
 
-        MsgBox("LOOOOLLL")
+        MsgBox("todo insert")
 
     End Sub
 
