@@ -2,58 +2,48 @@
 Public Class Profesor
     Inherits System.Web.UI.Page
 
-    Dim connection As New SqlConnection
-    Dim command As New SqlCommand
-    Dim reader As SqlDataReader
-    Dim query As String = String.Empty
-    Dim nombre As String = String.Empty
+    Dim nombreUsuario As String = String.Empty
+    Dim claveAsignatura As String = String.Empty
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If String.IsNullOrWhiteSpace(Session("s_nombre")) Then
-            Response.BufferOutput = True
-            Response.Redirect("~/Default.aspx", False)
-        End If
+
     End Sub
 
-
-
-    Protected Sub entrarAsignaturaEventMethod(ByVal sender As Object, ByVal e As System.EventArgs) Handles entrarAsignaturaButton.Click
+    Protected Sub crearAsignaturaEventMethod(ByVal sender As Object, ByVal e As System.EventArgs) Handles crearAsignaturaButton.Click
 
         crearAsignatura()
 
     End Sub
 
-    Protected Sub crearAsignatura()
+    Private Sub crearAsignatura()
+        nombreUsuario = Session("s_nombre")
+        Dim context As DataClassesGesexDataContext = New DataClassesGesexDataContext
+        Dim asig As New asignatura With {
+            .clave_asignatura = claveAsignaturaTextBox.Text,
+            .nombre_asignatura = nombreAsignaturaTextBox.Text}
+        context.asignatura.InsertOnSubmit(asig)
         Try
-            nombre = Session("s_nombre")
-            Dim connString As String = System.Configuration.ConfigurationManager.ConnectionStrings("BDConn").ToString()
-            connection = New SqlConnection(connString)
-            connection.Open()
-
-            Query = "INSERT INTO dbo.asignatura (clave_asignatura, nombre_asignatura) values (@key, @nom)"
-            Command = New SqlCommand(Query, connection)
-            Command.Parameters.AddWithValue("@key", claveAsignaturaTextBox.Text)
-            Command.Parameters.AddWithValue("@nom", nombreAsignaturaTextBox.Text)
-            reader = Command.ExecuteReader()
-            reader.Close()
-
-            Query = "INSERT INTO dbo.usuario_cursa_asignatura (clave_asignatura, nombre_usuario) values (@key, @nom)"
-            Command = New SqlCommand(Query, connection)
-            Command.Parameters.AddWithValue("@key", claveAsignaturaTextBox.Text)
-            Command.Parameters.AddWithValue("@nom", nombre)
-            Command.ExecuteReader()
-            reader.Close()
-
-            connection.Close()
-            crearAsignaturasPlaceHolder.Visible = False
-            claveAsignaturaTextBox.Text = String.Empty
-            nombreAsignaturaTextBox.Text = String.Empty
-
-
+            context.SubmitChanges()
+            claveAsignatura = asig.clave_asignatura
+            Dim cursa As New usuario_cursa_asignatura With {
+            .nombre_usuario = nombreUsuario,
+            .clave_asignatura = claveAsignatura}
+            context.usuario_cursa_asignatura.InsertOnSubmit(cursa)
+            Try
+                context.SubmitChanges()
+                claveAsignaturaTextBox.Text = String.Empty
+                nombreAsignaturaTextBox.Text = String.Empty
+                FailureText.Text = String.Empty
+                ErrorMessage.Visible = False
+            Catch ex As Exception
+                FailureText.Text = "Ha habido un problema inscribiéndose en la asignatura"
+                ErrorMessage.Visible = True
+            End Try
         Catch ex As Exception
-            FailureText.Text = "Esta asignatura no existe, compruebe el nombre y la calve"
+            FailureText.Text = "Esta asignatura ya existe, compruebe el nombre y la calve"
             ErrorMessage.Visible = True
         End Try
+
 
     End Sub
 

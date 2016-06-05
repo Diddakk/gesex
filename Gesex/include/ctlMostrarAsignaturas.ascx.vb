@@ -30,7 +30,7 @@
     Protected Sub CommandBtn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles AsignaturasListView.SelectedIndexChanged
 
         asignaturaElegida = DirectCast(sender, LinkButton).Text
-        Session("s_asignatura") = asignaturaElegida
+        Session("s_claveAsignatura") = asignaturaElegida
         If tipo = "profesor" Then
             Response.BufferOutput = True
             Response.Redirect("~/Profesor/AsignaturaProfesor.aspx", False)

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Profesor.aspx.vb" Inherits="Gesex.Profesor" %>
+
 <%@ Register Src="~/include/ctlMostrarAsignaturas.ascx" TagPrefix="uc1" TagName="ctlMostrarAsignaturas" %>
 <%@ Register Src="~/include/ctlInscribirseEnAsignatura.ascx" TagPrefix="uc1" TagName="ctlInscribirseEnAsignatura" %>
 
@@ -7,19 +8,19 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    
+
     <asp:Button ID="verCrearAsignaturasButton" Text="Crear una Asignatura" runat="server" OnClick="verCrearAsignaturasEventMethod" CausesValidation="False" />
-    
+
     <asp:Button ID="verInscribirseButton" Text="Inscribirse en una Asignatura" runat="server" OnClick="verInscribirseEventMethod" CausesValidation="False" />
 
     <asp:PlaceHolder runat="server" ID="crearAsignaturasPlaceHolder" Visible="false">
         <div>
-            <h3>Crear una asignatura</h3> 
+            <h3>Crear una asignatura</h3>
             <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-        <p class="text-danger">
-            <asp:Literal runat="server" ID="FailureText" />
-        </p>
-    </asp:PlaceHolder>
+                <p class="text-danger">
+                    <asp:Literal runat="server" ID="FailureText" />
+                </p>
+            </asp:PlaceHolder>
             <div>
                 <asp:Label runat="server" AssociatedControlID="nombreAsignaturaTextBox">Nombre</asp:Label>
                 <div>
@@ -35,7 +36,7 @@
                 </div>
             </div>
             <div>
-                <asp:Button ID="entrarAsignaturaButton" Text="Entrar" runat="server" OnClick="entrarAsignaturaEventMethod" />
+                <asp:Button ID="crearAsignaturaButton" Text="Crear" runat="server" OnClick="crearAsignaturaEventMethod" />
             </div>
 
         </div>

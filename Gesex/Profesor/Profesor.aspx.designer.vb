@@ -77,13 +77,13 @@ Partial Public Class Profesor
     Protected WithEvents claveAsignaturaTextBox As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Control entrarAsignaturaButton.
+    '''Control crearAsignaturaButton.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents entrarAsignaturaButton As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents crearAsignaturaButton As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control ctlInscribirseEnAsignatura.
