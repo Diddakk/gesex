@@ -5,7 +5,7 @@
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        asignatura = Session("s_asignatura")
+        asignatura = Session("s_claveAsignatura")
 
     End Sub
 

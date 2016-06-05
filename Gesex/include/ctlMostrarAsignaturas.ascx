@@ -16,12 +16,12 @@
         </LayoutTemplate>
         <ItemTemplate>
             <li>
-                <asp:LinkButton ID="nombre_asignaturaLink" Text='<%# Eval("nombre_asignatura") %>' CommandName="List" runat="server" OnCommand="CommandBtn_Click" />
+                <asp:LinkButton ID="nombre_asignaturaLink" Text='<%# Eval("clave_asignatura") %>' CommandName="List" runat="server" OnCommand="CommandBtn_Click" />
             </li>
         </ItemTemplate>
         <SelectedItemTemplate>
             <li>
-                <asp:LinkButton ID="nombre_asignaturaLink" Text='<%# Eval("nombre_asignatura") %>' CommandName="Selected" CssClass="selected" runat="server" OnCommand="CommandBtn_Click" />
+                <asp:LinkButton ID="nombre_asignaturaLink" Text='<%# Eval("clave_asignatura") %>' CommandName="Selected" CssClass="selected" runat="server" OnCommand="CommandBtn_Click" />
             </li>
         </SelectedItemTemplate>
     </asp:ListView>

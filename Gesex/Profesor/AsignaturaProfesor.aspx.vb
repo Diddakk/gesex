@@ -1,14 +1,16 @@
 ﻿Public Class AsignaturaProfesor
     Inherits System.Web.UI.Page
-    Protected asignatura As String = String.Empty
+
+    Dim nombreUsuario As String = String.Empty
+    Protected claveAsignatura As String = String.Empty
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
-        asignatura = Session("s_asignatura")
+        nombreUsuario = Session("s_nombre")
+        claveAsignatura = Session("s_claveAsignatura")
 
     End Sub
 
-    Protected Sub entrarExamenEventMethod(ByVal sender As Object, ByVal e As System.EventArgs) Handles entrarExamenButton.Click
+    Protected Sub crearExamenEventMethod(ByVal sender As Object, ByVal e As System.EventArgs) Handles crearExamenButton.Click
 
         crearExamen()
 
@@ -16,7 +18,24 @@
 
     Private Sub crearExamen()
 
-        MsgBox("TODO insert antes de Linq")
+        Dim context As DataClassesGesexDataContext = New DataClassesGesexDataContext
+        Dim exam As New examen With {
+            .fecha_examen = fechaExamenInput.Value,
+            .clave_asignatura = claveAsignatura,
+            .nombre_examen = nombreExamenTextBox.Text}
+        context.examen.InsertOnSubmit(exam)
+        Try
+
+            context.SubmitChanges()
+            fechaExamenInput.Value = String.Empty
+            nombreExamenTextBox.Text = String.Empty
+            FailureText.Text = String.Empty
+            ErrorMessage.Visible = False
+
+        Catch ex As Exception
+            FailureText.Text = "No se ha podido crear el examen"
+            ErrorMessage.Visible = True
+        End Try
 
     End Sub
 
