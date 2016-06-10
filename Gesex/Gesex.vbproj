@@ -139,7 +139,6 @@
     <Content Include="include\ctlMostrarAsignaturas.ascx" />
     <Content Include="Profesor\AsignaturaProfesor.aspx" />
     <Content Include="Profesor\Profesor.aspx" />
-    <Content Include="pruebaLinq.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -230,13 +229,6 @@
     </Compile>
     <Compile Include="Profesor\Profesor.aspx.vb">
       <DependentUpon>Profesor.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="pruebaLinq.aspx.designer.vb">
-      <DependentUpon>pruebaLinq.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pruebaLinq.aspx.vb">
-      <DependentUpon>pruebaLinq.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Site.Master.designer.vb">
