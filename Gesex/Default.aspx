@@ -73,7 +73,7 @@
 
     </asp:PlaceHolder>
 
-    <%--<a href="pruebaLinq.aspx">pruebaLinq.aspx</a>--%>
+    <%--<a href="Pruebas.aspx?nombre_examen=NombreDePrueba">Pruebas</a>--%>
 
 
 </asp:Content>

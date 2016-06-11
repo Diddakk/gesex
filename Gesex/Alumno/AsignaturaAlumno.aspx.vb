@@ -26,7 +26,7 @@
             For Each ex As examen In exam
 
                 bdr.Append("<li>")
-                bdr.AppendFormat("<a href='ExamenAlumno.aspx?id_examen={0}'>{1}</a>", ex.id_examen, ex.nombre_examen)
+                bdr.AppendFormat("<a href='ExamenAlumno.aspx?id_examen={0}&nombre_examen={1}'>{1}</a>", ex.id_examen, ex.nombre_examen)
                 bdr.Append("</li>")
 
             Next
@@ -38,8 +38,8 @@
             ExamenesPlaceHolder.Controls.Add(New LiteralControl(bdr.ToString()))
 
         Catch ex As Exception
-            FailureText.Text = ex.ToString()
-            'FailureText.Text = "Ningún examen disponible"
+            'FailureText.Text = ex.ToString()
+            FailureText.Text = "Ningún examen disponible"
             ErrorMessage.Visible = True
         End Try
 
