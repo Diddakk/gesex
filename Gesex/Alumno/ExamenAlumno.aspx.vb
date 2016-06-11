@@ -15,8 +15,6 @@
     End Sub
 
     Private Sub mostrarPreguntasYRespuestas()
-        Dim preg As String = String.Empty
-        Dim resp As String = String.Empty
         Dim bdr As New StringBuilder
         Dim context As DataClassesGesexDataContext = New DataClassesGesexDataContext
 
@@ -32,7 +30,7 @@
 
                 'TODO mostrar preguntas enviadas
                 'Dim pregList As List(Of pregunta) = (From p In context.pregunta
-                '                                     Where p.nombre_usuario = nombreUsuario And p.id_examen = claveExamen
+                '                                     Where p.nombre_usuario = nombreUsuario And p.id_examen = idExamen
                 '                                     Select p).ToList
                 'For Each p As pregunta In pregList
                 'Next
@@ -90,18 +88,35 @@
 
             For i As Integer = 1 To 3
 
+                Dim idPregunta As Integer
+                If (From id As pregunta In context.pregunta
+                    Where id.id_examen = idExamen
+                    Select id.id_pregunta).Any Then
+
+                    idPregunta = (From id As pregunta In context.pregunta
+                                  Where id.id_examen = idExamen
+                                  Select id.id_pregunta).Max
+                    idPregunta = idPregunta + 1
+
+                Else
+
+                    idPregunta = 1
+
+                End If
+
                 Dim txtPreg As String = Request.Form("p" & i)
                 Dim nuevaPregunta As New pregunta With {
                 .id_examen = idExamen,
+                .id_pregunta = idPregunta,
                 .nombre_usuario = nombreUsuario,
                 .texto_pregunta = txtPreg}
 
                 context.pregunta.InsertOnSubmit(nuevaPregunta)
                 context.SubmitChanges()
 
-                Dim idPreg As Integer = (From p In context.pregunta
-                                         Where p.nombre_usuario = nombreUsuario And p.id_examen = idExamen And p.texto_pregunta = txtPreg
-                                         Select p.id_pregunta).First
+                'Dim idPreg As Integer = (From p In context.pregunta
+                '                         Where p.nombre_usuario = nombreUsuario And p.id_examen = idExamen And p.texto_pregunta = txtPreg
+                '                         Select p.id_pregunta).First
 
                 For j As Integer = 1 To 3
 
@@ -115,9 +130,28 @@
                         End If
                     End If
 
+                    Dim idRespuesta As Integer
+                    If (From id As respuesta In context.respuesta
+                        Where id.id_examen = idExamen And id.id_pregunta = idPregunta
+                        Select id.id_respuesta).Any Then
+
+                        idRespuesta = (From id As respuesta In context.respuesta
+                                       Where id.id_examen = idExamen And id.id_pregunta = idPregunta
+                                       Select id.id_respuesta).Max
+                        idRespuesta = idRespuesta + 1
+
+
+                    Else
+
+                        idRespuesta = 1
+
+                    End If
+
+
                     Dim nuevaResp As New respuesta With {
                         .id_examen = idExamen,
-                        .id_pregunta = idPreg,
+                        .id_pregunta = idPregunta,
+                        .id_respuesta = idRespuesta,
                         .texto_respuesta = txtResp,
                         .correcta = corr}
                     context.respuesta.InsertOnSubmit(nuevaResp)

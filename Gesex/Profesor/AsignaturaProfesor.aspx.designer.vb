@@ -23,15 +23,6 @@ Partial Public Class AsignaturaProfesor
     Protected WithEvents verCrearExamenButton As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control crearExamenPlaceHolder.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents crearExamenPlaceHolder As Global.System.Web.UI.WebControls.PlaceHolder
-    
-    '''<summary>
     '''Control ErrorMessage.
     '''</summary>
     '''<remarks>
@@ -48,6 +39,15 @@ Partial Public Class AsignaturaProfesor
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents FailureText As Global.System.Web.UI.WebControls.Literal
+    
+    '''<summary>
+    '''Control crearExamenPlaceHolder.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents crearExamenPlaceHolder As Global.System.Web.UI.WebControls.PlaceHolder
     
     '''<summary>
     '''Control nombreExamenTextBox.
@@ -75,4 +75,13 @@ Partial Public Class AsignaturaProfesor
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents crearExamenButton As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control ExamenesPlaceHolder.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ExamenesPlaceHolder As Global.System.Web.UI.WebControls.PlaceHolder
 End Class

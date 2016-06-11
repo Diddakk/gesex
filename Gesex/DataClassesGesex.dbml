@@ -24,32 +24,28 @@
       <Column Name="clave_asignatura" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="fecha_creacion" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="nombre_examen" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="activar_examen" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="examen_usuario_hace_examen" Member="usuario_hace_examen" ThisKey="id_examen" OtherKey="id_examen" Type="usuario_hace_examen" />
-      <Association Name="examen_pregunta" Member="pregunta" ThisKey="id_examen" OtherKey="id_examen" Type="pregunta" />
       <Association Name="asignatura_examen" Member="asignatura" ThisKey="clave_asignatura" OtherKey="clave_asignatura" Type="asignatura" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.pregunta" Member="pregunta">
     <Type Name="pregunta">
       <Column Name="id_examen" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="id_pregunta" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_pregunta" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="texto_pregunta" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
       <Column Name="fecha_pregunta" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="nombre_usuario" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="validada" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="pregunta_respuesta" Member="respuesta" ThisKey="id_examen,id_pregunta" OtherKey="id_examen,id_pregunta" Type="respuesta" />
-      <Association Name="examen_pregunta" Member="examen" ThisKey="id_examen" OtherKey="id_examen" Type="examen" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="usuario_pregunta" Member="usuario" ThisKey="nombre_usuario" OtherKey="nombre_usuario" Type="usuario" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.respuesta" Member="respuesta">
     <Type Name="respuesta">
       <Column Name="id_examen" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="id_pregunta" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="id_respuesta" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_respuesta" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="texto_respuesta" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
       <Column Name="correcta" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="pregunta_respuesta" Member="pregunta" ThisKey="id_examen,id_pregunta" OtherKey="id_examen,id_pregunta" Type="pregunta" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.usuario" Member="usuario">
@@ -58,7 +54,6 @@
       <Column Name="password_usuario" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
       <Column Name="tipo_usuario" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
       <Association Name="usuario_usuario_hace_examen" Member="usuario_hace_examen" ThisKey="nombre_usuario" OtherKey="nombre_usuario" Type="usuario_hace_examen" />
-      <Association Name="usuario_pregunta" Member="pregunta" ThisKey="nombre_usuario" OtherKey="nombre_usuario" Type="pregunta" />
       <Association Name="usuario_usuario_cursa_asignatura" Member="usuario_cursa_asignatura" ThisKey="nombre_usuario" OtherKey="nombre_usuario" Type="usuario_cursa_asignatura" />
     </Type>
   </Table>

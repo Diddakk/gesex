@@ -462,9 +462,9 @@ Partial Public Class examen
 	
 	Private _nombre_examen As String
 	
-	Private _usuario_hace_examen As EntitySet(Of usuario_hace_examen)
+	Private _activar_examen As Boolean
 	
-	Private _pregunta As EntitySet(Of pregunta)
+	Private _usuario_hace_examen As EntitySet(Of usuario_hace_examen)
 	
 	Private _asignatura As EntityRef(Of asignatura)
 	
@@ -495,12 +495,15 @@ Partial Public Class examen
     End Sub
     Partial Private Sub Onnombre_examenChanged()
     End Sub
+    Partial Private Sub Onactivar_examenChanging(value As Boolean)
+    End Sub
+    Partial Private Sub Onactivar_examenChanged()
+    End Sub
     #End Region
 	
 	Public Sub New()
 		MyBase.New
 		Me._usuario_hace_examen = New EntitySet(Of usuario_hace_examen)(AddressOf Me.attach_usuario_hace_examen, AddressOf Me.detach_usuario_hace_examen)
-		Me._pregunta = New EntitySet(Of pregunta)(AddressOf Me.attach_pregunta, AddressOf Me.detach_pregunta)
 		Me._asignatura = CType(Nothing, EntityRef(Of asignatura))
 		OnCreated
 	End Sub
@@ -591,6 +594,23 @@ Partial Public Class examen
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_activar_examen", DbType:="Bit NOT NULL")>  _
+	Public Property activar_examen() As Boolean
+		Get
+			Return Me._activar_examen
+		End Get
+		Set
+			If ((Me._activar_examen = value)  _
+						= false) Then
+				Me.Onactivar_examenChanging(value)
+				Me.SendPropertyChanging
+				Me._activar_examen = value
+				Me.SendPropertyChanged("activar_examen")
+				Me.Onactivar_examenChanged
+			End If
+		End Set
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="examen_usuario_hace_examen", Storage:="_usuario_hace_examen", ThisKey:="id_examen", OtherKey:="id_examen")>  _
 	Public Property usuario_hace_examen() As EntitySet(Of usuario_hace_examen)
 		Get
@@ -598,16 +618,6 @@ Partial Public Class examen
 		End Get
 		Set
 			Me._usuario_hace_examen.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="examen_pregunta", Storage:="_pregunta", ThisKey:="id_examen", OtherKey:="id_examen")>  _
-	Public Property pregunta() As EntitySet(Of pregunta)
-		Get
-			Return Me._pregunta
-		End Get
-		Set
-			Me._pregunta.Assign(value)
 		End Set
 	End Property
 	
@@ -666,16 +676,6 @@ Partial Public Class examen
 		Me.SendPropertyChanging
 		entity.examen = Nothing
 	End Sub
-	
-	Private Sub attach_pregunta(ByVal entity As pregunta)
-		Me.SendPropertyChanging
-		entity.examen = Me
-	End Sub
-	
-	Private Sub detach_pregunta(ByVal entity As pregunta)
-		Me.SendPropertyChanging
-		entity.examen = Nothing
-	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.pregunta")>  _
@@ -695,12 +695,6 @@ Partial Public Class pregunta
 	Private _nombre_usuario As String
 	
 	Private _validada As Boolean
-	
-	Private _respuesta As EntitySet(Of respuesta)
-	
-	Private _examen As EntityRef(Of examen)
-	
-	Private _usuario As EntityRef(Of usuario)
 	
     #Region "Definiciones de métodos de extensibilidad"
     Partial Private Sub OnLoaded()
@@ -737,9 +731,6 @@ Partial Public Class pregunta
 	
 	Public Sub New()
 		MyBase.New
-		Me._respuesta = New EntitySet(Of respuesta)(AddressOf Me.attach_respuesta, AddressOf Me.detach_respuesta)
-		Me._examen = CType(Nothing, EntityRef(Of examen))
-		Me._usuario = CType(Nothing, EntityRef(Of usuario))
 		OnCreated
 	End Sub
 	
@@ -751,9 +742,6 @@ Partial Public Class pregunta
 		Set
 			If ((Me._id_examen = value)  _
 						= false) Then
-				If Me._examen.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
 				Me.Onid_examenChanging(value)
 				Me.SendPropertyChanging
 				Me._id_examen = value
@@ -763,7 +751,7 @@ Partial Public Class pregunta
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_id_pregunta", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_id_pregunta", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
 	Public Property id_pregunta() As Integer
 		Get
 			Return Me._id_pregunta
@@ -820,9 +808,6 @@ Partial Public Class pregunta
 		End Get
 		Set
 			If (String.Equals(Me._nombre_usuario, value) = false) Then
-				If Me._usuario.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
 				Me.Onnombre_usuarioChanging(value)
 				Me.SendPropertyChanging
 				Me._nombre_usuario = value
@@ -849,72 +834,6 @@ Partial Public Class pregunta
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="pregunta_respuesta", Storage:="_respuesta", ThisKey:="id_examen,id_pregunta", OtherKey:="id_examen,id_pregunta")>  _
-	Public Property respuesta() As EntitySet(Of respuesta)
-		Get
-			Return Me._respuesta
-		End Get
-		Set
-			Me._respuesta.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="examen_pregunta", Storage:="_examen", ThisKey:="id_examen", OtherKey:="id_examen", IsForeignKey:=true, DeleteOnNull:=true, DeleteRule:="CASCADE")>  _
-	Public Property examen() As examen
-		Get
-			Return Me._examen.Entity
-		End Get
-		Set
-			Dim previousValue As examen = Me._examen.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._examen.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._examen.Entity = Nothing
-					previousValue.pregunta.Remove(Me)
-				End If
-				Me._examen.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.pregunta.Add(Me)
-					Me._id_examen = value.id_examen
-				Else
-					Me._id_examen = CType(Nothing, Integer)
-				End If
-				Me.SendPropertyChanged("examen")
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="usuario_pregunta", Storage:="_usuario", ThisKey:="nombre_usuario", OtherKey:="nombre_usuario", IsForeignKey:=true)>  _
-	Public Property usuario() As usuario
-		Get
-			Return Me._usuario.Entity
-		End Get
-		Set
-			Dim previousValue As usuario = Me._usuario.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._usuario.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._usuario.Entity = Nothing
-					previousValue.pregunta.Remove(Me)
-				End If
-				Me._usuario.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.pregunta.Add(Me)
-					Me._nombre_usuario = value.nombre_usuario
-				Else
-					Me._nombre_usuario = CType(Nothing, String)
-				End If
-				Me.SendPropertyChanged("usuario")
-			End If
-		End Set
-	End Property
-	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -931,16 +850,6 @@ Partial Public Class pregunta
 					= false) Then
 			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
 		End If
-	End Sub
-	
-	Private Sub attach_respuesta(ByVal entity As respuesta)
-		Me.SendPropertyChanging
-		entity.pregunta = Me
-	End Sub
-	
-	Private Sub detach_respuesta(ByVal entity As respuesta)
-		Me.SendPropertyChanging
-		entity.pregunta = Nothing
 	End Sub
 End Class
 
@@ -959,8 +868,6 @@ Partial Public Class respuesta
 	Private _texto_respuesta As String
 	
 	Private _correcta As Boolean
-	
-	Private _pregunta As EntityRef(Of pregunta)
 	
     #Region "Definiciones de métodos de extensibilidad"
     Partial Private Sub OnLoaded()
@@ -993,7 +900,6 @@ Partial Public Class respuesta
 	
 	Public Sub New()
 		MyBase.New
-		Me._pregunta = CType(Nothing, EntityRef(Of pregunta))
 		OnCreated
 	End Sub
 	
@@ -1005,9 +911,6 @@ Partial Public Class respuesta
 		Set
 			If ((Me._id_examen = value)  _
 						= false) Then
-				If Me._pregunta.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
 				Me.Onid_examenChanging(value)
 				Me.SendPropertyChanging
 				Me._id_examen = value
@@ -1025,9 +928,6 @@ Partial Public Class respuesta
 		Set
 			If ((Me._id_pregunta = value)  _
 						= false) Then
-				If Me._pregunta.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
 				Me.Onid_preguntaChanging(value)
 				Me.SendPropertyChanging
 				Me._id_pregunta = value
@@ -1037,7 +937,7 @@ Partial Public Class respuesta
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_id_respuesta", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_id_respuesta", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
 	Public Property id_respuesta() As Integer
 		Get
 			Return Me._id_respuesta
@@ -1087,36 +987,6 @@ Partial Public Class respuesta
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="pregunta_respuesta", Storage:="_pregunta", ThisKey:="id_examen,id_pregunta", OtherKey:="id_examen,id_pregunta", IsForeignKey:=true)>  _
-	Public Property pregunta() As pregunta
-		Get
-			Return Me._pregunta.Entity
-		End Get
-		Set
-			Dim previousValue As pregunta = Me._pregunta.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._pregunta.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._pregunta.Entity = Nothing
-					previousValue.respuesta.Remove(Me)
-				End If
-				Me._pregunta.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.respuesta.Add(Me)
-					Me._id_examen = value.id_examen
-					Me._id_pregunta = value.id_pregunta
-				Else
-					Me._id_examen = CType(Nothing, Integer)
-					Me._id_pregunta = CType(Nothing, Integer)
-				End If
-				Me.SendPropertyChanged("pregunta")
-			End If
-		End Set
-	End Property
-	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -1150,8 +1020,6 @@ Partial Public Class usuario
 	
 	Private _usuario_hace_examen As EntitySet(Of usuario_hace_examen)
 	
-	Private _pregunta As EntitySet(Of pregunta)
-	
 	Private _usuario_cursa_asignatura As EntitySet(Of usuario_cursa_asignatura)
 	
     #Region "Definiciones de métodos de extensibilidad"
@@ -1178,7 +1046,6 @@ Partial Public Class usuario
 	Public Sub New()
 		MyBase.New
 		Me._usuario_hace_examen = New EntitySet(Of usuario_hace_examen)(AddressOf Me.attach_usuario_hace_examen, AddressOf Me.detach_usuario_hace_examen)
-		Me._pregunta = New EntitySet(Of pregunta)(AddressOf Me.attach_pregunta, AddressOf Me.detach_pregunta)
 		Me._usuario_cursa_asignatura = New EntitySet(Of usuario_cursa_asignatura)(AddressOf Me.attach_usuario_cursa_asignatura, AddressOf Me.detach_usuario_cursa_asignatura)
 		OnCreated
 	End Sub
@@ -1241,16 +1108,6 @@ Partial Public Class usuario
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="usuario_pregunta", Storage:="_pregunta", ThisKey:="nombre_usuario", OtherKey:="nombre_usuario")>  _
-	Public Property pregunta() As EntitySet(Of pregunta)
-		Get
-			Return Me._pregunta
-		End Get
-		Set
-			Me._pregunta.Assign(value)
-		End Set
-	End Property
-	
 	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="usuario_usuario_cursa_asignatura", Storage:="_usuario_cursa_asignatura", ThisKey:="nombre_usuario", OtherKey:="nombre_usuario")>  _
 	Public Property usuario_cursa_asignatura() As EntitySet(Of usuario_cursa_asignatura)
 		Get
@@ -1285,16 +1142,6 @@ Partial Public Class usuario
 	End Sub
 	
 	Private Sub detach_usuario_hace_examen(ByVal entity As usuario_hace_examen)
-		Me.SendPropertyChanging
-		entity.usuario = Nothing
-	End Sub
-	
-	Private Sub attach_pregunta(ByVal entity As pregunta)
-		Me.SendPropertyChanging
-		entity.usuario = Me
-	End Sub
-	
-	Private Sub detach_pregunta(ByVal entity As pregunta)
 		Me.SendPropertyChanging
 		entity.usuario = Nothing
 	End Sub

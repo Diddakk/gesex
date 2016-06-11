@@ -8,15 +8,14 @@
     </div>
 
     <asp:Button ID="verCrearExamenButton" Text="Crear un Examen" runat="server" OnClick="verCrearExamenEventMethod" CausesValidation="False" />
-
+    <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false" >
+        <p class="text-danger">
+            <asp:Literal runat="server" ID="FailureText" />
+        </p>
+    </asp:PlaceHolder>
     <asp:PlaceHolder runat="server" ID="crearExamenPlaceHolder" Visible="false">
         <div>
-            <h3>Crear un exámen</h3>
-            <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false" >
-                    <p class="text-danger">
-                        <asp:Literal runat="server" ID="FailureText" />
-                    </p>
-                </asp:PlaceHolder>
+            <h3>Crear un exámen</h3>            
             <div>
                 <asp:Label runat="server" AssociatedControlID="nombreExamenTextBox">Nombre</asp:Label>
                 <div>
@@ -34,6 +33,8 @@
             </div>
         </div>
     </asp:PlaceHolder>
+
+    <asp:PlaceHolder runat="server" ID="ExamenesPlaceHolder" Visible="true" />
 
 
 </asp:Content>

@@ -139,6 +139,7 @@
     <Content Include="include\ctlInscribirseEnAsignatura.ascx" />
     <Content Include="include\ctlMostrarAsignaturas.ascx" />
     <Content Include="Profesor\AsignaturaProfesor.aspx" />
+    <Content Include="Profesor\ExamenProfesor.aspx" />
     <Content Include="Profesor\Profesor.aspx" />
     <Content Include="Pruebas.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
@@ -231,6 +232,13 @@
     </Compile>
     <Compile Include="Profesor\AsignaturaProfesor.aspx.vb">
       <DependentUpon>AsignaturaProfesor.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Profesor\ExamenProfesor.aspx.designer.vb">
+      <DependentUpon>ExamenProfesor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profesor\ExamenProfesor.aspx.vb">
+      <DependentUpon>ExamenProfesor.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Profesor\Profesor.aspx.designer.vb">
