@@ -3,10 +3,14 @@
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h3><%=nombreExamen%></h3>
+    <a href="AsignaturaAlumno.aspx">Volver</a> 
     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
         <p class="text-danger">
             <asp:Literal runat="server" ID="FailureText" />
         </p>
     </asp:PlaceHolder>
     <asp:PlaceHolder runat="server" ID="PreguntasYRespuestasPlaceHolder" Visible="true" />
+    <div>
+        <asp:Button ID="EnviarPregYRespButton" runat="server" Text="Enviar" />
+    </div>
 </asp:Content>
