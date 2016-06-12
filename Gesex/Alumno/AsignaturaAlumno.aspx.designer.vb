@@ -39,4 +39,22 @@ Partial Public Class AsignaturaAlumno
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ExamenesPlaceHolder As Global.System.Web.UI.WebControls.PlaceHolder
+    
+    '''<summary>
+    '''Control ExamenesActivosPlaceHolder.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ExamenesActivosPlaceHolder As Global.System.Web.UI.WebControls.PlaceHolder
+    
+    '''<summary>
+    '''Control ExamenesActivosLiteral.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ExamenesActivosLiteral As Global.System.Web.UI.WebControls.Literal
 End Class

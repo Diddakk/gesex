@@ -8,6 +8,41 @@
         asignatura = Session("s_claveAsignatura")
 
         mostrarExamenes()
+        mostrarExamenesActivos()
+
+    End Sub
+
+    Private Sub mostrarExamenesActivos()
+
+        Dim bdr As New StringBuilder
+        Dim context As DataClassesGesexDataContext = New DataClassesGesexDataContext
+
+
+        If (From ex In context.examen
+            Where ex.activar_examen = True
+            Select ex).Any Then
+
+            Dim ExActList As List(Of examen) = (From ex In context.examen
+                                                Where ex.activar_examen = True
+                                                Select ex).ToList
+            bdr.Append("<div>")
+            bdr.Append("<ul>")
+
+            For Each ex In ExActList
+
+                bdr.Append("<li>")
+                bdr.AppendFormat("<a href='ExamenActivo.aspx?id_examen={0}&nombre_examen={1}'>{1}</a>", ex.id_examen, ex.nombre_examen)
+                bdr.Append("</li>")
+
+            Next
+
+            bdr.Append("</ul>")
+            bdr.Append("</div>")
+            ExamenesActivosLiteral.Text = bdr.ToString
+            ExamenesActivosPlaceHolder.Visible = True
+
+        End If
+
 
     End Sub
 

@@ -11,59 +11,41 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Site
+Partial Public Class ExamenActivo
     
     '''<summary>
-    '''Control Head.
+    '''Control ErrorMessage.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Head As Global.System.Web.UI.WebControls.ContentPlaceHolder
+    Protected WithEvents ErrorMessage As Global.System.Web.UI.WebControls.PlaceHolder
     
     '''<summary>
-    '''Control form1.
+    '''Control FailureText.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
+    Protected WithEvents FailureText As Global.System.Web.UI.WebControls.Literal
     
     '''<summary>
-    '''Control usuarioLabel.
+    '''Control ExamenActivoPlaceHolder.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents usuarioLabel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents ExamenActivoPlaceHolder As Global.System.Web.UI.WebControls.PlaceHolder
     
     '''<summary>
-    '''Control logoutButton.
+    '''Control EnviarExamenButton.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents logoutButton As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''Control MainContent.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
-    
-    '''<summary>
-    '''Control JqueryStuff.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents JqueryStuff As Global.System.Web.UI.WebControls.ContentPlaceHolder
+    Protected WithEvents EnviarExamenButton As Global.System.Web.UI.WebControls.Button
 End Class

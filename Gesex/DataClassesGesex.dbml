@@ -46,6 +46,7 @@
       <Column Name="id_respuesta" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="texto_respuesta" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
       <Column Name="correcta" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="nombre_usuario" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.usuario" Member="usuario">

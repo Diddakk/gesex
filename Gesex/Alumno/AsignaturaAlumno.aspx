@@ -11,5 +11,16 @@
             </p>
         </asp:PlaceHolder>
         <asp:PlaceHolder runat="server" ID="ExamenesPlaceHolder" Visible="true" />
+        <asp:PlaceHolder runat="server" ID="ExamenesActivosPlaceHolder" Visible="false" >
+            <div>
+                
+                <h3>Examenes activos</h3>
+                <h2>ADVERTENCIA: Una vez comenzado el examen, no podrá cambiar el foco ni de la ventana ni de la pestaña del navegador. 
+                    Si lo hace, será redirigido.</h2>
+                <asp:Literal runat="server" ID="ExamenesActivosLiteral" />
+
+            </div>
+        </asp:PlaceHolder>
+
     </div>
 </asp:Content>

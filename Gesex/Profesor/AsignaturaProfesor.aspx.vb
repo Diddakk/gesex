@@ -71,6 +71,12 @@
             ErrorMessage.Visible = True
         End Try
 
+        Dim hace As New usuario_hace_examen With {
+            .id_examen = exam.id_examen,
+            .nombre_usuario = nombreUsuario}
+        context.usuario_hace_examen.InsertOnSubmit(hace)
+        context.SubmitChanges()
+
     End Sub
 
 

@@ -560,9 +560,9 @@ Partial Public Class examen
 			End If
 		End Set
 	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_fecha_creacion", DbType:="Date NOT NULL")>  _
-	Public Property fecha_creacion() As Date
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_fecha_creacion", DbType:="Date NOT NULL", IsDbGenerated:=True)>
+    Public Property fecha_creacion() As Date
 		Get
 			Return Me._fecha_creacion
 		End Get
@@ -783,9 +783,9 @@ Partial Public Class pregunta
 			End If
 		End Set
 	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_fecha_pregunta", DbType:="Date NOT NULL")>  _
-	Public Property fecha_pregunta() As Date
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_fecha_pregunta", DbType:="Date NOT NULL", IsDbGenerated:=True)>
+    Public Property fecha_pregunta() As Date
 		Get
 			Return Me._fecha_pregunta
 		End Get
@@ -869,6 +869,8 @@ Partial Public Class respuesta
 	
 	Private _correcta As Boolean
 	
+	Private _nombre_usuario As String
+	
     #Region "Definiciones de métodos de extensibilidad"
     Partial Private Sub OnLoaded()
     End Sub
@@ -895,6 +897,10 @@ Partial Public Class respuesta
     Partial Private Sub OncorrectaChanging(value As Boolean)
     End Sub
     Partial Private Sub OncorrectaChanged()
+    End Sub
+    Partial Private Sub Onnombre_usuarioChanging(value As String)
+    End Sub
+    Partial Private Sub Onnombre_usuarioChanged()
     End Sub
     #End Region
 	
@@ -983,6 +989,22 @@ Partial Public Class respuesta
 				Me._correcta = value
 				Me.SendPropertyChanged("correcta")
 				Me.OncorrectaChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_nombre_usuario", DbType:="NVarChar(50) NOT NULL", CanBeNull:=false, IsPrimaryKey:=true)>  _
+	Public Property nombre_usuario() As String
+		Get
+			Return Me._nombre_usuario
+		End Get
+		Set
+			If (String.Equals(Me._nombre_usuario, value) = false) Then
+				Me.Onnombre_usuarioChanging(value)
+				Me.SendPropertyChanging
+				Me._nombre_usuario = value
+				Me.SendPropertyChanged("nombre_usuario")
+				Me.Onnombre_usuarioChanged
 			End If
 		End Set
 	End Property

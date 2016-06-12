@@ -127,6 +127,7 @@
   <ItemGroup>
     <Content Include="Alumno\Alumno.aspx" />
     <Content Include="Alumno\AsignaturaAlumno.aspx" />
+    <Content Include="Alumno\ExamenActivo.aspx" />
     <Content Include="Alumno\ExamenAlumno.aspx" />
     <Content Include="content\css\bootstrap-theme.css" />
     <Content Include="content\css\bootstrap-theme.min.css" />
@@ -163,6 +164,13 @@
     </Compile>
     <Compile Include="Alumno\AsignaturaAlumno.aspx.vb">
       <DependentUpon>AsignaturaAlumno.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Alumno\ExamenActivo.aspx.designer.vb">
+      <DependentUpon>ExamenActivo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Alumno\ExamenActivo.aspx.vb">
+      <DependentUpon>ExamenActivo.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Alumno\ExamenAlumno.aspx.designer.vb">

@@ -12,6 +12,7 @@
 
         mostrarPreguntasYRespuestas()
 
+
     End Sub
 
     Private Sub mostrarPreguntasYRespuestas()
@@ -19,6 +20,7 @@
         Dim context As DataClassesGesexDataContext = New DataClassesGesexDataContext
 
         Try
+
             Dim check As Boolean = (From p In context.pregunta
                                     Where p.nombre_usuario = nombreUsuario And p.id_examen = idExamen
                                     Select p).Any
@@ -35,7 +37,7 @@
                 'For Each p As pregunta In pregList
                 'Next
 
-                MsgBox("Ya ha entregado las preguntas de este examen")
+                MsgBox("Ya ha entregado las preguntas de este examen", MsgBoxStyle.MsgBoxSetForeground)
                 Response.BufferOutput = True
                 Response.Redirect("~/Alumno/AsignaturaAlumno.aspx", False)
 
@@ -85,6 +87,13 @@
         If check Then
             'TODO update
         Else
+            ' buscar al profe que creó el examen
+            Dim profe As String = (From p In context.usuario_hace_examen
+                                   Join u In context.usuario
+                                       On p.nombre_usuario Equals u.nombre_usuario
+                                   Where p.id_examen = idExamen And u.tipo_usuario = "profesor"
+                                   Select p.nombre_usuario).First
+
 
             For i As Integer = 1 To 3
 
@@ -132,7 +141,7 @@
 
                     Dim idRespuesta As Integer
                     If (From id As respuesta In context.respuesta
-                        Where id.id_examen = idExamen And id.id_pregunta = idPregunta
+                        Where id.id_examen = idExamen And id.id_pregunta = idPregunta And id.nombre_usuario = profe
                         Select id.id_respuesta).Any Then
 
                         idRespuesta = (From id As respuesta In context.respuesta
@@ -152,6 +161,7 @@
                         .id_examen = idExamen,
                         .id_pregunta = idPregunta,
                         .id_respuesta = idRespuesta,
+                        .nombre_usuario = profe,
                         .texto_respuesta = txtResp,
                         .correcta = corr}
                     context.respuesta.InsertOnSubmit(nuevaResp)
@@ -163,7 +173,7 @@
         End If
 
         Response.BufferOutput = True
-        Response.Redirect("~/Alumno/AsignaturaAlumno.aspx", False)
+        Response.Redirect("~/Alumno/Alumno.aspx", False)
 
     End Sub
 
