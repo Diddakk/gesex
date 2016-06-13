@@ -33,10 +33,10 @@ Public Class Registro
             Session("s_tipo") = tipo
             If tipo = "profesor" Then
                 Response.BufferOutput = True
-                Response.Redirect("~/Profesor/Profesor.aspx", False)
+                Response.Redirect("/Profesor/Profesor.aspx", False)
             Else
                 Response.BufferOutput = True
-                Response.Redirect("~/Alumno/Alumno.aspx", False)
+                Response.Redirect("/Alumno/Alumno.aspx", False)
             End If
 
         Catch ex As Exception

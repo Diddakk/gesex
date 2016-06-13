@@ -3,8 +3,8 @@
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>        
-        <h3><%=asignatura%></h3>
-        <a href="Alumno.aspx">Volver</a> 
+        <h3><%=nombreAsignatura%></h3>
+        <a class="btn btn-default" href="/Alumno/Alumno.aspx">Volver</a> 
         <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
             <p class="text-danger">
                 <asp:Literal runat="server" ID="FailureText" />

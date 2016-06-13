@@ -33,61 +33,65 @@
                                      Where r.nombre_usuario = nombreUsuario And r.id_examen = idExamen
                                      Select r).Any
             If check2 Then
-                MsgBox("Ya ha hecho este examen", MsgBoxStyle.MsgBoxSetForeground)
-                Response.BufferOutput = True
-                Response.Redirect("~/Alumno/AsignaturaAlumno.aspx", False)
-            End If
-
-            If check Then
-
-                Dim profe As String = (From p In context.usuario_hace_examen
-                                       Join u In context.usuario
-                                   On p.nombre_usuario Equals u.nombre_usuario
-                                       Where p.id_examen = idExamen And u.tipo_usuario = "profesor"
-                                       Select p.nombre_usuario).First
-
-
-                bdr.Append("<div>")
-                bdr.Append("<ul>")
-
-                Dim pregList As List(Of pregunta) = (From p In context.pregunta
-                                                     Where p.id_examen = idExamen And p.validada = True
-                                                     Select p).ToList
-
-                For Each p As pregunta In pregList
+                EnviarExamenButton.Visible = False
+                FailureText.Text = "Ningún examen disponible"
+                ErrorMessage.Visible = True
+            Else
 
 
 
-                    bdr.Append("<li>")
-                    bdr.AppendFormat("<p>{0}</p>", p.texto_pregunta)
+                If check Then
+
+                    Dim profe As String = (From p In context.usuario_hace_examen
+                                           Join u In context.usuario
+                                       On p.nombre_usuario Equals u.nombre_usuario
+                                           Where p.id_examen = idExamen And u.tipo_usuario = "profesor"
+                                           Select p.nombre_usuario).First
+
+
+                    bdr.Append("<div>")
                     bdr.Append("<ul>")
 
-                    Dim respList As List(Of respuesta) = (From r As respuesta In context.respuesta
-                                                          Where r.id_examen = idExamen And r.id_pregunta = p.id_pregunta And r.nombre_usuario = profe
-                                                          Select r).ToList
-                    For Each r As respuesta In respList
+                    Dim pregList As List(Of pregunta) = (From p In context.pregunta
+                                                         Where p.id_examen = idExamen And p.validada = True
+                                                         Select p).ToList
+
+                    For Each p As pregunta In pregList
+
+
 
                         bdr.Append("<li>")
-                        bdr.Append("<p>")
-                        bdr.AppendFormat("<input id='p{0}r{1}c' name='p{0}c' value='p{0}r{1}' type='radio' />", r.id_pregunta, r.id_respuesta)
-                        bdr.AppendFormat(" {0}</p>", r.texto_respuesta)
+                        bdr.AppendFormat("<p>{0}</p>", p.texto_pregunta)
+                        bdr.Append("<ul>")
+
+                        Dim respList As List(Of respuesta) = (From r As respuesta In context.respuesta
+                                                              Where r.id_examen = idExamen And r.id_pregunta = p.id_pregunta And r.nombre_usuario = profe
+                                                              Select r).ToList
+                        For Each r As respuesta In respList
+
+                            bdr.Append("<li>")
+                            bdr.Append("<p>")
+                            bdr.AppendFormat("<input id='p{0}r{1}c' name='p{0}c' value='p{0}r{1}' type='radio' />", r.id_pregunta, r.id_respuesta)
+                            bdr.AppendFormat(" {0}</p>", r.texto_respuesta)
+                            bdr.Append("</li>")
+
+                        Next
+
+                        bdr.Append("</ul>")
                         bdr.Append("</li>")
 
                     Next
-
                     bdr.Append("</ul>")
-                    bdr.Append("</li>")
+                    bdr.Append("</div>")
+                    ExamenActivoPlaceHolder.Controls.Add(New LiteralControl(bdr.ToString()))
 
-                Next
-                bdr.Append("</ul>")
-                bdr.Append("</div>")
-                ExamenActivoPlaceHolder.Controls.Add(New LiteralControl(bdr.ToString()))
-
-            Else
-                MsgBox("Este examen no está activo", MsgBoxStyle.MsgBoxSetForeground)
-                Response.BufferOutput = True
-                Response.Redirect("~/Alumno/AsignaturaAlumno.aspx", False)
+                Else
+                    EnviarExamenButton.Visible = False
+                    FailureText.Text = "Ningún examen disponible"
+                    ErrorMessage.Visible = True
+                End If
             End If
+
 
         Catch ex As Exception
             FailureText.Text = ex.ToString()
@@ -148,6 +152,6 @@
             Next
         Next
         Response.BufferOutput = True
-        Response.Redirect("~/Alumno/Alumno.aspx", False)
+        Response.Redirect("/Alumno/Alumno.aspx", False)
     End Sub
 End Class

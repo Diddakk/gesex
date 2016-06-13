@@ -18,7 +18,7 @@
         </asp:PlaceHolder>
     <asp:PlaceHolder runat="server" ID="ExamenActivoPlaceHolder" Visible="true" />
     <div>
-        <asp:Button ID="EnviarExamenButton" runat="server" Text="Button" OnClick="EnviarExamenEventMethod" />
+        <asp:Button ID="EnviarExamenButton" CssClass="btn btn-default" runat="server" Text="Enviar" OnClick="EnviarExamenEventMethod" />
     </div>
 </asp:Content>
 <asp:Content ID="JqFun" ContentPlaceHolderID="JqueryStuff" runat="server">

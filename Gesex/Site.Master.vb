@@ -15,7 +15,7 @@
         Session.Clear()
         Session.Abandon()
         Response.BufferOutput = True
-        Response.Redirect("~/Default.aspx", False)
+        Response.Redirect("/Default.aspx", False)
     End Sub
 
 End Class

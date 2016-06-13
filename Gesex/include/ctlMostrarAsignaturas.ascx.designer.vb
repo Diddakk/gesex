@@ -23,11 +23,29 @@ Partial Public Class ctlMostrarAsignaturas
     Protected WithEvents refrescarAsignaturasButton As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control AsignaturasListView.
+    '''Control ErrorMessage.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents AsignaturasListView As Global.System.Web.UI.WebControls.ListView
+    Protected WithEvents ErrorMessage As Global.System.Web.UI.WebControls.PlaceHolder
+    
+    '''<summary>
+    '''Control FailureText.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents FailureText As Global.System.Web.UI.WebControls.Literal
+    
+    '''<summary>
+    '''Control AsignaturasPlaceHolder.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents AsignaturasPlaceHolder As Global.System.Web.UI.WebControls.PlaceHolder
 End Class

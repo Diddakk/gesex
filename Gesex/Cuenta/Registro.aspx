@@ -4,8 +4,8 @@
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <p>Registrarse</p>
-    <a href="../Default.aspx">Inicio</a>
-    <a href="#">Registrarse</a>
+    <a class="btn btn-default" href="../Default.aspx">Inicio</a>
+    <a class="btn btn-default" href="#">Registrarse</a>
     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
         <p class="text-danger">
             <asp:Literal runat="server" ID="FailureText" />
@@ -45,7 +45,7 @@
         </div>
     </div>
     <div>
-        <asp:Button ID="registroButton" Text="Registrarse" runat="server" OnClick="registroEventMethod" />
+        <asp:Button ID="registroButton" CssClass="btn btn-default" Text="Registrarse" runat="server" OnClick="registroEventMethod" />
     </div>
 
 </asp:Content>

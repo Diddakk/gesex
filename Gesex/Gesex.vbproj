@@ -133,6 +133,7 @@
     <Content Include="content\css\bootstrap-theme.min.css" />
     <Content Include="content\css\bootstrap.css" />
     <Content Include="content\css\bootstrap.min.css" />
+    <Content Include="content\css\Style.css" />
     <Content Include="content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Cuenta\Registro.aspx" />
     <Content Include="Default.aspx" />

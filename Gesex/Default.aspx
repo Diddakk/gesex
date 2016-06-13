@@ -3,23 +3,16 @@
 <asp:Content ID="HeadContent" ContentPlaceHolderID="Head" runat="server">
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-    <asp:Button ID="verLoginButton" Text="Entrar" runat="server" OnClick="verLoginEventMethod" />
-    <a href="Cuenta/Registro.aspx">Registrarse</a>
-    <h1>Gesex</h1>
-    <h4>Gestor de exámenes colaborativo</h4>
-
+    <div class="col-md-6 col-md-offset-3">
+        <asp:Button ID="verLoginButton" CssClass="btn btn-default" Text="Entrar" runat="server" OnClick="verLoginEventMethod" />    
+        <a class="btn btn-default" href="/Cuenta/Registro.aspx" class="btn btn-default" >Registrarse</a>
+        <h4>Gestor de exámenes colaborativo</h4>
+    </div>
     <asp:PlaceHolder runat="server" ID="InfoPlaceHolder" Visible="true">
-
-        <div class="infoWeb">
+        
+        <div class="col-md-10 col-md-offset-1">
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vulputate rhoncus est nec dapibus. 
-            In hac habitasse platea dictumst. Curabitur quam orci, molestie in vulputate ac, imperdiet at dolor. 
-            Mauris a erat at justo ultrices maximus a sit amet tortor. Donec pulvinar hendrerit ex, quis maximus 
-            massa ultricies ac. Nulla facilisi. Nunc eu aliquam elit. Ut vulputate feugiat dapibus. Quisque egestas 
-            massa scelerisque, egestas velit a, dignissim ipsum. Morbi quis est ultricies, ornare felis eu, efficitur 
-            ante. Maecenas tempor dignissim imperdiet. Morbi consequat fermentum sem eu finibus. Nam auctor a risus vitae 
-            facilisis. Vivamus consequat elementum urna quis gravida. Quisque dictum lorem eu tortor sagittis imperdiet.
+                Gesex es una aplicación web de gestión de exámenes colaborativa.
             </p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vulputate rhoncus est nec dapibus. 
@@ -46,7 +39,7 @@
 
     <asp:PlaceHolder runat="server" ID="LoginPlaceHolder" Visible="false">
 
-        <div class="login">
+        <div class="col-md-6 col-md-offset-3">
             <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                 <p class="text-danger">
                     <asp:Literal runat="server" ID="FailureText" />
@@ -67,7 +60,7 @@
                 </div>
             </div>
             <div>
-                <asp:Button ID="entrarButton" Text="Entrar" runat="server" OnClick="entrarEventMethod" />
+                <asp:Button ID="entrarButton" CssClass="btn btn-default" Text="Entrar" runat="server" OnClick="entrarEventMethod" />
             </div>
         </div>
 

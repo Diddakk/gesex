@@ -36,10 +36,9 @@
                 '                                     Select p).ToList
                 'For Each p As pregunta In pregList
                 'Next
-
-                MsgBox("Ya ha entregado las preguntas de este examen", MsgBoxStyle.MsgBoxSetForeground)
-                Response.BufferOutput = True
-                Response.Redirect("~/Alumno/AsignaturaAlumno.aspx", False)
+                EnviarPregYRespButton.Visible = False
+                FailureText.Text = "Ningún examen disponible"
+                ErrorMessage.Visible = True
 
             Else
 
@@ -47,14 +46,14 @@
 
                     bdr.Append("<li>")
                     bdr.AppendFormat("<p>Pregunta Nº{0}</p>", i)
-                    bdr.AppendFormat("<input id='p{0}' name='p{0}' type='text'>", i)
+                    bdr.AppendFormat("<textarea class=""form-control"" rows=""3""  id='p{0}' name='p{0}' type='text'></textarea>", i)
                     bdr.Append("<ul>")
                     For j As Integer = 1 To 3
 
                         bdr.Append("<li>")
                         bdr.AppendFormat("<p>Respuesta Nº{0}</p>", j)
                         bdr.AppendFormat("<input id='p{0}r{1}c' name='p{0}c' value='p{0}r{1}' type='radio'>", i, j)
-                        bdr.AppendFormat("<input id='p{0}r{1}' name='p{0}r{1}' type='text'>", i, j)
+                        bdr.AppendFormat("<input id='p{0}r{1}' class=""form-control"" name='p{0}r{1}' type='text'>", i, j)
                         bdr.Append("</li>")
 
                     Next
@@ -173,7 +172,7 @@
         End If
 
         Response.BufferOutput = True
-        Response.Redirect("~/Alumno/Alumno.aspx", False)
+        Response.Redirect("/Alumno/Alumno.aspx", False)
 
     End Sub
 

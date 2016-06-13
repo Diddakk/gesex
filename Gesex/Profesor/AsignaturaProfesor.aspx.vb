@@ -2,11 +2,14 @@
     Inherits System.Web.UI.Page
 
     Dim nombreUsuario As String = String.Empty
-    Protected claveAsignatura As String = String.Empty
+    Protected nombreAsignatura As String = String.Empty
+    Dim claveAsignatura As String = String.Empty
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        claveAsignatura = Request.QueryString("id_asignatura")
+        nombreAsignatura = Request.QueryString("nombre_asignatura")
         nombreUsuario = Session("s_nombre")
-        claveAsignatura = Session("s_claveAsignatura")
 
         mostrarExamenes()
 

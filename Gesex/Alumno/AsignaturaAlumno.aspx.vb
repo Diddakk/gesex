@@ -1,11 +1,13 @@
 ﻿Public Class AsignaturaAlumno
     Inherits System.Web.UI.Page
 
-    Protected asignatura As String = String.Empty
+    Protected nombreAsignatura As String = String.Empty
+    Dim asignatura As String = String.Empty
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        asignatura = Session("s_claveAsignatura")
+        asignatura = Request.QueryString("id_asignatura")
+        nombreAsignatura = Request.QueryString("nombre_asignatura")
 
         mostrarExamenes()
         mostrarExamenesActivos()
@@ -23,7 +25,7 @@
             Select ex).Any Then
 
             Dim ExActList As List(Of examen) = (From ex In context.examen
-                                                Where ex.activar_examen = True
+                                                Where ex.activar_examen = True And ex.clave_asignatura = asignatura
                                                 Select ex).ToList
             bdr.Append("<div>")
             bdr.Append("<ul>")

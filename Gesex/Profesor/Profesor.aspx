@@ -9,9 +9,9 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:Button ID="verCrearAsignaturasButton" Text="Crear una Asignatura" runat="server" OnClick="verCrearAsignaturasEventMethod" CausesValidation="False" />
+    <asp:Button ID="verCrearAsignaturasButton" CssClass="btn btn-default" Text="Crear una Asignatura" runat="server" OnClick="verCrearAsignaturasEventMethod" CausesValidation="False" />
 
-    <asp:Button ID="verInscribirseButton" Text="Inscribirse en una Asignatura" runat="server" OnClick="verInscribirseEventMethod" CausesValidation="False" />
+    <asp:Button ID="verInscribirseButton" CssClass="btn btn-default" Text="Inscribirse en una Asignatura" runat="server" OnClick="verInscribirseEventMethod" CausesValidation="False" />
 
     <asp:PlaceHolder runat="server" ID="crearAsignaturasPlaceHolder" Visible="false">
         <div>
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div>
-                <asp:Button ID="crearAsignaturaButton" Text="Crear" runat="server" OnClick="crearAsignaturaEventMethod" />
+                <asp:Button ID="crearAsignaturaButton" CssClass="btn btn-default" Text="Crear" runat="server" OnClick="crearAsignaturaEventMethod" />
             </div>
 
         </div>

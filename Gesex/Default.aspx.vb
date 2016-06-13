@@ -27,10 +27,10 @@
             Session("s_tipo") = user.tipo_usuario
             If user.tipo_usuario = "profesor" Then
                 Response.BufferOutput = True
-                Response.Redirect("~/Profesor/Profesor.aspx", False)
+                Response.Redirect("/Profesor/Profesor.aspx", False)
             Else
                 Response.BufferOutput = True
-                Response.Redirect("~/Alumno/Alumno.aspx", False)
+                Response.Redirect("/Alumno/Alumno.aspx", False)
             End If
         Catch ex As Exception
             FailureText.Text = "Intento de inicio de sesión no válido"

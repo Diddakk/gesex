@@ -3,19 +3,19 @@
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h3><%=nombreExamen%></h3>
-    <a href="AsignaturaProfesor.aspx">Volver</a> 
+    <a class="btn btn-default" href="/Profesor/Profesor.aspx">Volver</a> 
     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
         <p class="text-danger">
             <asp:Literal runat="server" ID="FailureText" />
         </p>
     </asp:PlaceHolder>
     <div>
-        <asp:Button ID="ActivarExamenButton" runat="server" Text="Activar Examen" />
+        <asp:Button ID="ActivarExamenButton" CssClass="btn btn-default" runat="server" Text="Activar Examen" />
         <asp:Literal runat="server" ID="ExamenActivoLiteral" Text="Este examen está activo" Visible="false" />
     </div>    
     <asp:PlaceHolder runat="server" ID="PreguntasYRespuestasPlaceHolder" Visible="true" />
     <div>
-        <asp:Button ID="EnviarPregYRespButton" runat="server" Text="Enviar" />
+        <asp:Button ID="EnviarPregYRespButton" CssClass="btn btn-default" runat="server" Text="Enviar" />
     </div>
     
 </asp:Content>

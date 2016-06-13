@@ -22,7 +22,7 @@
         </div>
     </div>        
     <div>
-        <asp:Button ID="InscribirseButton" Text="Inscribirse" runat="server" OnClick="inscribirseEventMethod" />
+        <asp:Button ID="InscribirseButton" CssClass="btn btn-default" Text="Inscribirse" runat="server" OnClick="inscribirseEventMethod" />
     </div>
         
 </div>

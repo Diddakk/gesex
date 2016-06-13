@@ -9,7 +9,7 @@
 
     <p>Alumno</p>    
 
-    <asp:Button ID="verInscribirseButton" Text="Inscribirse en una Asignatura" runat="server" OnClick="verInscribirseEventMethod" CausesValidation="False" />
+    <asp:Button ID="verInscribirseButton" CssClass="btn btn-default" Text="Inscribirse en una Asignatura" runat="server" OnClick="verInscribirseEventMethod" CausesValidation="False" />
     
     <uc1:ctlInscribirseEnAsignatura runat="server" ID="ctlInscribirseEnAsignatura" Visible="false" />
     

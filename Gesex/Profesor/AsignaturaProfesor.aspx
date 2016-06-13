@@ -3,11 +3,11 @@
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>        
-        <h3><%=claveAsignatura%></h3> 
-        <a href="Profesor.aspx">Volver</a>
+        <h3><%=nombreAsignatura%></h3> 
+        <a class="btn btn-default" href="/Profesor/Profesor.aspx">Volver</a>
     </div>
 
-    <asp:Button ID="verCrearExamenButton" Text="Crear un Examen" runat="server" OnClick="verCrearExamenEventMethod" CausesValidation="False" />
+    <asp:Button ID="verCrearExamenButton" CssClass="btn btn-default" Text="Crear un Examen" runat="server" OnClick="verCrearExamenEventMethod" CausesValidation="False" />
     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false" >
         <p class="text-danger">
             <asp:Literal runat="server" ID="FailureText" />
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div>
-                <asp:Button ID="crearExamenButton" Text="Entrar" runat="server" OnClick="crearExamenEventMethod" />
+                <asp:Button ID="crearExamenButton" CssClass="btn btn-default" Text="Entrar" runat="server" OnClick="crearExamenEventMethod" />
             </div>
         </div>
     </asp:PlaceHolder>
