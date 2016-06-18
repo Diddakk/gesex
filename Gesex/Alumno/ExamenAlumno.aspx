@@ -2,8 +2,10 @@
 <asp:Content ID="HeadContent" ContentPlaceHolderID="Head" runat="server">
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h3><%=nombreExamen%></h3>
-    <a class="btn btn-default" href="/Alumno/Alumno.aspx">Volver</a> 
+    <div class="row">
+            <h3>Examen: <%=nombreExamen%></h3>
+            <p class="pull-right"><a class="btn btn-default" href="/Alumno/Alumno.aspx">Volver</a></p>
+        </div>
     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
         <p class="text-danger">
             <asp:Literal runat="server" ID="FailureText" />

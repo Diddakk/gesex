@@ -1,3 +1,27 @@
 ﻿.masterMain {
     margin-bottom: 200px;
 }
+.contenedor {
+    margin-top: 50px
+}
+#usuarioLabel {
+    margin-left: 40%;
+    font-size: x-large;
+    font-weight: bold;
+}
+.nombreMasterDiv, .logoutMaster{
+    margin-top: 20px;
+}
+.notaAA{
+    float:right;
+}
+.pregBox{
+    margin: 10px;
+}
+.pregBox input[type="text"] {
+    width: 90%;
+}
+.pregBox input[type="radio"] {
+    margin-top: 10px;
+    margin-right: 10px;
+}

@@ -9,41 +9,41 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:Button ID="verCrearAsignaturasButton" CssClass="btn btn-default" Text="Crear una Asignatura" runat="server" OnClick="verCrearAsignaturasEventMethod" CausesValidation="False" />
-
-    <asp:Button ID="verInscribirseButton" CssClass="btn btn-default" Text="Inscribirse en una Asignatura" runat="server" OnClick="verInscribirseEventMethod" CausesValidation="False" />
-
-    <asp:PlaceHolder runat="server" ID="crearAsignaturasPlaceHolder" Visible="false">
-        <div>
-            <h3>Crear una asignatura</h3>
-            <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                <p class="text-danger">
-                    <asp:Literal runat="server" ID="FailureText" />
-                </p>
-            </asp:PlaceHolder>
-            <div>
-                <asp:Label runat="server" AssociatedControlID="nombreAsignaturaTextBox">Nombre</asp:Label>
-                <div>
-                    <asp:TextBox ID="nombreAsignaturaTextBox" runat="server" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="nombreAsignaturaTextBox" ErrorMessage="El campo de nombre es obligatorio." />
-                </div>
-            </div>
-            <div>
-                <asp:Label runat="server" AssociatedControlID="claveAsignaturaTextBox">Clave:</asp:Label>
-                <div>
-                    <asp:TextBox ID="claveAsignaturaTextBox" runat="server" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="claveAsignaturaTextBox" ErrorMessage="El campo de clave es obligatorio." />
-                </div>
-            </div>
-            <div>
-                <asp:Button ID="crearAsignaturaButton" CssClass="btn btn-default" Text="Crear" runat="server" OnClick="crearAsignaturaEventMethod" />
-            </div>
-
+    <div class="col-md-8 col-md-offset-2 contenedor profePage">
+        <div class="col-md-6 col-md-offset-3">
+            <button id="verCrearAsignaturasButton" class="btn btn-default" type="button" >Nueva asignatura</button>      
         </div>
-    </asp:PlaceHolder>
+        <asp:PlaceHolder runat="server" ID="crearAsignaturasPlaceHolder" >
+            <div class="col-md-6 col-md-offset-3 contenedor crearPage hidden">
+                <h3>Crear una asignatura</h3>
+                <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                    <p class="text-danger">
+                        <asp:Literal runat="server" ID="FailureText" />
+                    </p>
+                </asp:PlaceHolder>
+                <div>
+                    <asp:Label runat="server" AssociatedControlID="nombreAsignaturaTextBox">Nombre</asp:Label>
+                    <div>
+                        <asp:TextBox ID="nombreAsignaturaTextBox" runat="server" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="nombreAsignaturaTextBox" ErrorMessage="El campo de nombre es obligatorio." />
+                    </div>
+                </div>
+                <div>
+                    <asp:Label runat="server" AssociatedControlID="claveAsignaturaTextBox">Clave:</asp:Label>
+                    <div>
+                        <asp:TextBox ID="claveAsignaturaTextBox" runat="server" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="claveAsignaturaTextBox" ErrorMessage="El campo de clave es obligatorio." />
+                    </div>
+                </div>
+                <div>
+                    <asp:Button ID="crearAsignaturaButton" CssClass="btn btn-default" Text="Crear" runat="server" OnClick="crearAsignaturaEventMethod" />
+                </div>
 
-    <uc1:ctlInscribirseEnAsignatura runat="server" ID="ctlInscribirseEnAsignatura" Visible="false" />
+            </div>
+        </asp:PlaceHolder>
+    
+        <uc1:ctlMostrarAsignaturas runat="server" ID="mostrarAsignaturas" />
 
-    <uc1:ctlMostrarAsignaturas runat="server" ID="mostrarAsignaturas" />
+    </div>
 
 </asp:Content>

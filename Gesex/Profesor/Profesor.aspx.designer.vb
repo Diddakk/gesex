@@ -14,24 +14,6 @@ Option Explicit On
 Partial Public Class Profesor
     
     '''<summary>
-    '''Control verCrearAsignaturasButton.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents verCrearAsignaturasButton As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''Control verInscribirseButton.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents verInscribirseButton As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
     '''Control crearAsignaturasPlaceHolder.
     '''</summary>
     '''<remarks>
@@ -84,15 +66,6 @@ Partial Public Class Profesor
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents crearAsignaturaButton As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''Control ctlInscribirseEnAsignatura.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents ctlInscribirseEnAsignatura As Global.Gesex.ctlInscribirseEnAsignatura
     
     '''<summary>
     '''Control mostrarAsignaturas.

@@ -11,10 +11,6 @@
         muestraAsignatura()
     End Sub
 
-    Protected Sub refrescarAsignaturasEventMethod(ByVal sender As Object, ByVal e As System.EventArgs) Handles refrescarAsignaturasButton.Click
-        muestraAsignatura()
-    End Sub
-
     Private Sub muestraAsignatura()
         Dim context As DataClassesGesexDataContext = New DataClassesGesexDataContext
         Dim bdr As New StringBuilder

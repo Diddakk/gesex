@@ -8,18 +8,13 @@
 
     End Sub
 
-    Protected Sub verLoginEventMethod(ByVal sender As Object, ByVal e As System.EventArgs) Handles verLoginButton.Click
-        If InfoPlaceHolder.Visible = True Then
-            InfoPlaceHolder.Visible = False
-            LoginPlaceHolder.Visible = True
-        End If
-    End Sub
-
     Protected Sub entrarEventMethod(ByVal sender As Object, ByVal e As System.EventArgs) Handles entrarButton.Click
         nombre = nombreTextBox.Text
         pass = passTextBox.Text
-        Try
-            Dim context As DataClassesGesexDataContext = New DataClassesGesexDataContext
+        Dim context As DataClassesGesexDataContext = New DataClassesGesexDataContext
+        If (From u In context.usuario
+            Where u.nombre_usuario = nombre And u.password_usuario = pass
+            Select u).Any Then
             Dim user As usuario = (From u In context.usuario
                                    Where u.nombre_usuario = nombre And u.password_usuario = pass
                                    Select u).First
@@ -32,9 +27,10 @@
                 Response.BufferOutput = True
                 Response.Redirect("/Alumno/Alumno.aspx", False)
             End If
-        Catch ex As Exception
+        Else
+
             FailureText.Text = "Intento de inicio de sesión no válido"
             ErrorMessage.Visible = True
-        End Try
+        End If
     End Sub
 End Class

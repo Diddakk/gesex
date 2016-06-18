@@ -1,15 +1,15 @@
-﻿Public Class ExamenActivo
+﻿Imports Gesex
+
+Public Class ExamenActivo
     Inherits System.Web.UI.Page
 
     Dim nombreUsuario As String = String.Empty
-    Protected asignatura As String = String.Empty
     Protected nombreExamen As String = String.Empty
     Private idExamen As String = String.Empty
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         nombreUsuario = Session("s_nombre")
-        asignatura = Session("s_claveAsignatura")
         nombreExamen = Request.QueryString("nombre_examen")
         idExamen = Request.QueryString("id_examen")
 
@@ -151,7 +151,52 @@
                 'End If
             Next
         Next
+        CalcularNota(context, profe)
         Response.BufferOutput = True
         Response.Redirect("/Alumno/Alumno.aspx", False)
     End Sub
+
+    Private Sub CalcularNota(context As DataClassesGesexDataContext, profe As String)
+
+        Dim respExamenHS As HashSet(Of respuesta) = New HashSet(Of respuesta)(From re As respuesta In context.respuesta
+                                                                              Where re.id_examen = idExamen And re.nombre_usuario = profe
+                                                                              Select re)
+        Dim respAlumnoHS As HashSet(Of respuesta) = New HashSet(Of respuesta)(From ra As respuesta In context.respuesta
+                                                                              Where ra.id_examen = idExamen And ra.nombre_usuario = nombreUsuario
+                                                                              Select ra)
+        Dim nota As Decimal = 0
+        Dim contador As Decimal = 0
+        Dim total As Decimal = (From p As pregunta In context.pregunta
+                                Where p.id_examen = idExamen And p.validada = True
+                                Select p).Count
+
+        For Each resAl In respAlumnoHS
+            Dim resEx As Boolean = (From r In respExamenHS
+                                    Where r.id_pregunta = resAl.id_pregunta And r.id_respuesta = resAl.id_respuesta And r.correcta = resAl.correcta
+                                    Select r).Any
+            If resEx Then
+                contador = contador + 1
+            End If
+
+        Next
+        Try
+            nota = (contador / total) * 100
+        Catch ex As Exception
+            'FailureText.Text = "No hay preguntas a las que asignar una nota"
+            FailureText.Text = ex.ToString()
+            ErrorMessage.Visible = True
+        End Try
+
+
+        Dim ponerNota As New usuario_hace_examen With {
+            .id_examen = idExamen,
+            .nombre_usuario = nombreUsuario,
+            .nota_hace = nota}
+
+
+        context.usuario_hace_examen.InsertOnSubmit(ponerNota)
+        context.SubmitChanges()
+
+    End Sub
+
 End Class

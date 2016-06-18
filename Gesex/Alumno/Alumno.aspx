@@ -6,13 +6,13 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-    <p>Alumno</p>    
-
-    <asp:Button ID="verInscribirseButton" CssClass="btn btn-default" Text="Inscribirse en una Asignatura" runat="server" OnClick="verInscribirseEventMethod" CausesValidation="False" />
-    
-    <uc1:ctlInscribirseEnAsignatura runat="server" ID="ctlInscribirseEnAsignatura" Visible="false" />
-    
-    <uc1:ctlMostrarAsignaturas runat="server" ID="mostrarAsignaturas" />    
+    <div class="col-md-8 col-md-offset-2 contenedor alumnoPage">
+        <div class="col-md-6 col-md-offset-3">
+            <button id="verInscribirseButton" class="btn btn-default" type="button" >Inscribirse en una asignatura</button>
+        </div>
+        <uc1:ctlMostrarAsignaturas runat="server" ID="mostrarAsignaturas" />    
+        <uc1:ctlInscribirseEnAsignatura runat="server" ID="ctlInscribirseEnAsignatura" />
+        
+    </div>
 
 </asp:Content>

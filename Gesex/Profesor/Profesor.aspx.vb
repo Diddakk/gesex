@@ -6,7 +6,7 @@ Public Class Profesor
     Dim claveAsignatura As String = String.Empty
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        nombreUsuario = Session("s_nombre")
     End Sub
 
     Protected Sub crearAsignaturaEventMethod(ByVal sender As Object, ByVal e As System.EventArgs) Handles crearAsignaturaButton.Click
@@ -16,7 +16,6 @@ Public Class Profesor
     End Sub
 
     Private Sub crearAsignatura()
-        nombreUsuario = Session("s_nombre")
         Dim context As DataClassesGesexDataContext = New DataClassesGesexDataContext
         Dim asig As New asignatura With {
             .clave_asignatura = claveAsignaturaTextBox.Text,
@@ -47,27 +46,6 @@ Public Class Profesor
 
     End Sub
 
-    Protected Sub verCrearAsignaturasEventMethod(ByVal sender As Object, ByVal e As System.EventArgs) Handles verCrearAsignaturasButton.Click
-        crearAsignaturaVisible()
-    End Sub
-    Protected Sub crearAsignaturaVisible()
-        If crearAsignaturasPlaceHolder.Visible = False Then
-            crearAsignaturasPlaceHolder.Visible = True
-        Else
-            crearAsignaturasPlaceHolder.Visible = False
-        End If
-    End Sub
-
-    Protected Sub verInscribirseEventMethod(ByVal sender As Object, ByVal e As System.EventArgs) Handles verInscribirseButton.Click
-        inscribirVisible()
-    End Sub
-    Private Sub inscribirVisible()
-        If ctlInscribirseEnAsignatura.Visible = False Then
-            ctlInscribirseEnAsignatura.Visible = True
-        Else
-            ctlInscribirseEnAsignatura.Visible = False
-        End If
-    End Sub
 
 
 End Class

@@ -14,33 +14,6 @@ Option Explicit On
 Partial Public Class _Default
     
     '''<summary>
-    '''Control verLoginButton.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents verLoginButton As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''Control InfoPlaceHolder.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents InfoPlaceHolder As Global.System.Web.UI.WebControls.PlaceHolder
-    
-    '''<summary>
-    '''Control LoginPlaceHolder.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents LoginPlaceHolder As Global.System.Web.UI.WebControls.PlaceHolder
-    
-    '''<summary>
     '''Control ErrorMessage.
     '''</summary>
     '''<remarks>

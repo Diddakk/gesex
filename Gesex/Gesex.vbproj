@@ -150,6 +150,7 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-2.2.4.js" />
     <Content Include="scripts\npm.js" />
+    <Content Include="scripts\script.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

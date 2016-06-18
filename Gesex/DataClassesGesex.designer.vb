@@ -31,17 +31,17 @@ Partial Public Class DataClassesGesexDataContext
   #Region "Definiciones de métodos de extensibilidad"
   Partial Private Sub OnCreated()
   End Sub
-  Partial Private Sub Insertasignatura(instance As asignatura)
-    End Sub
-  Partial Private Sub Updateasignatura(instance As asignatura)
-    End Sub
-  Partial Private Sub Deleteasignatura(instance As asignatura)
-    End Sub
   Partial Private Sub Insertusuario_hace_examen(instance As usuario_hace_examen)
     End Sub
   Partial Private Sub Updateusuario_hace_examen(instance As usuario_hace_examen)
     End Sub
   Partial Private Sub Deleteusuario_hace_examen(instance As usuario_hace_examen)
+    End Sub
+  Partial Private Sub Insertasignatura(instance As asignatura)
+    End Sub
+  Partial Private Sub Updateasignatura(instance As asignatura)
+    End Sub
+  Partial Private Sub Deleteasignatura(instance As asignatura)
     End Sub
   Partial Private Sub Insertexamen(instance As examen)
     End Sub
@@ -100,15 +100,15 @@ Partial Public Class DataClassesGesexDataContext
 		OnCreated
 	End Sub
 	
-	Public ReadOnly Property asignatura() As System.Data.Linq.Table(Of asignatura)
-		Get
-			Return Me.GetTable(Of asignatura)
-		End Get
-	End Property
-	
 	Public ReadOnly Property usuario_hace_examen() As System.Data.Linq.Table(Of usuario_hace_examen)
 		Get
 			Return Me.GetTable(Of usuario_hace_examen)
+		End Get
+	End Property
+	
+	Public ReadOnly Property asignatura() As System.Data.Linq.Table(Of asignatura)
+		Get
+			Return Me.GetTable(Of asignatura)
 		End Get
 	End Property
 	
@@ -141,6 +141,180 @@ Partial Public Class DataClassesGesexDataContext
 			Return Me.GetTable(Of usuario_cursa_asignatura)
 		End Get
 	End Property
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.usuario_hace_examen")>  _
+Partial Public Class usuario_hace_examen
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _nombre_usuario As String
+	
+	Private _id_examen As Integer
+	
+	Private _nota_hace As System.Nullable(Of Decimal)
+	
+	Private _examen As EntityRef(Of examen)
+	
+	Private _usuario As EntityRef(Of usuario)
+	
+    #Region "Definiciones de métodos de extensibilidad"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub Onnombre_usuarioChanging(value As String)
+    End Sub
+    Partial Private Sub Onnombre_usuarioChanged()
+    End Sub
+    Partial Private Sub Onid_examenChanging(value As Integer)
+    End Sub
+    Partial Private Sub Onid_examenChanged()
+    End Sub
+    Partial Private Sub Onnota_haceChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub Onnota_haceChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._examen = CType(Nothing, EntityRef(Of examen))
+		Me._usuario = CType(Nothing, EntityRef(Of usuario))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_nombre_usuario", DbType:="NVarChar(50) NOT NULL", CanBeNull:=false, IsPrimaryKey:=true)>  _
+	Public Property nombre_usuario() As String
+		Get
+			Return Me._nombre_usuario
+		End Get
+		Set
+			If (String.Equals(Me._nombre_usuario, value) = false) Then
+				If Me._usuario.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.Onnombre_usuarioChanging(value)
+				Me.SendPropertyChanging
+				Me._nombre_usuario = value
+				Me.SendPropertyChanged("nombre_usuario")
+				Me.Onnombre_usuarioChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_id_examen", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property id_examen() As Integer
+		Get
+			Return Me._id_examen
+		End Get
+		Set
+			If ((Me._id_examen = value)  _
+						= false) Then
+				If Me._examen.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.Onid_examenChanging(value)
+				Me.SendPropertyChanging
+				Me._id_examen = value
+				Me.SendPropertyChanged("id_examen")
+				Me.Onid_examenChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_nota_hace", DbType:="Decimal(5,2)")>  _
+	Public Property nota_hace() As System.Nullable(Of Decimal)
+		Get
+			Return Me._nota_hace
+		End Get
+		Set
+			If (Me._nota_hace.Equals(value) = false) Then
+				Me.Onnota_haceChanging(value)
+				Me.SendPropertyChanging
+				Me._nota_hace = value
+				Me.SendPropertyChanged("nota_hace")
+				Me.Onnota_haceChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="examen_usuario_hace_examen", Storage:="_examen", ThisKey:="id_examen", OtherKey:="id_examen", IsForeignKey:=true)>  _
+	Public Property examen() As examen
+		Get
+			Return Me._examen.Entity
+		End Get
+		Set
+			Dim previousValue As examen = Me._examen.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._examen.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._examen.Entity = Nothing
+					previousValue.usuario_hace_examen.Remove(Me)
+				End If
+				Me._examen.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.usuario_hace_examen.Add(Me)
+					Me._id_examen = value.id_examen
+				Else
+					Me._id_examen = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("examen")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="usuario_usuario_hace_examen", Storage:="_usuario", ThisKey:="nombre_usuario", OtherKey:="nombre_usuario", IsForeignKey:=true)>  _
+	Public Property usuario() As usuario
+		Get
+			Return Me._usuario.Entity
+		End Get
+		Set
+			Dim previousValue As usuario = Me._usuario.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._usuario.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._usuario.Entity = Nothing
+					previousValue.usuario_hace_examen.Remove(Me)
+				End If
+				Me._usuario.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.usuario_hace_examen.Add(Me)
+					Me._nombre_usuario = value.nombre_usuario
+				Else
+					Me._nombre_usuario = CType(Nothing, String)
+				End If
+				Me.SendPropertyChanged("usuario")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.asignatura")>  _
@@ -269,180 +443,6 @@ Partial Public Class asignatura
 	Private Sub detach_usuario_cursa_asignatura(ByVal entity As usuario_cursa_asignatura)
 		Me.SendPropertyChanging
 		entity.asignatura = Nothing
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.usuario_hace_examen")>  _
-Partial Public Class usuario_hace_examen
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _nombre_usuario As String
-	
-	Private _id_examen As Integer
-	
-	Private _nota_hace As System.Nullable(Of Integer)
-	
-	Private _examen As EntityRef(Of examen)
-	
-	Private _usuario As EntityRef(Of usuario)
-	
-    #Region "Definiciones de métodos de extensibilidad"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub Onnombre_usuarioChanging(value As String)
-    End Sub
-    Partial Private Sub Onnombre_usuarioChanged()
-    End Sub
-    Partial Private Sub Onid_examenChanging(value As Integer)
-    End Sub
-    Partial Private Sub Onid_examenChanged()
-    End Sub
-    Partial Private Sub Onnota_haceChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub Onnota_haceChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._examen = CType(Nothing, EntityRef(Of examen))
-		Me._usuario = CType(Nothing, EntityRef(Of usuario))
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_nombre_usuario", DbType:="NVarChar(50) NOT NULL", CanBeNull:=false, IsPrimaryKey:=true)>  _
-	Public Property nombre_usuario() As String
-		Get
-			Return Me._nombre_usuario
-		End Get
-		Set
-			If (String.Equals(Me._nombre_usuario, value) = false) Then
-				If Me._usuario.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.Onnombre_usuarioChanging(value)
-				Me.SendPropertyChanging
-				Me._nombre_usuario = value
-				Me.SendPropertyChanged("nombre_usuario")
-				Me.Onnombre_usuarioChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_id_examen", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property id_examen() As Integer
-		Get
-			Return Me._id_examen
-		End Get
-		Set
-			If ((Me._id_examen = value)  _
-						= false) Then
-				If Me._examen.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.Onid_examenChanging(value)
-				Me.SendPropertyChanging
-				Me._id_examen = value
-				Me.SendPropertyChanged("id_examen")
-				Me.Onid_examenChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_nota_hace", DbType:="Int")>  _
-	Public Property nota_hace() As System.Nullable(Of Integer)
-		Get
-			Return Me._nota_hace
-		End Get
-		Set
-			If (Me._nota_hace.Equals(value) = false) Then
-				Me.Onnota_haceChanging(value)
-				Me.SendPropertyChanging
-				Me._nota_hace = value
-				Me.SendPropertyChanged("nota_hace")
-				Me.Onnota_haceChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="examen_usuario_hace_examen", Storage:="_examen", ThisKey:="id_examen", OtherKey:="id_examen", IsForeignKey:=true)>  _
-	Public Property examen() As examen
-		Get
-			Return Me._examen.Entity
-		End Get
-		Set
-			Dim previousValue As examen = Me._examen.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._examen.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._examen.Entity = Nothing
-					previousValue.usuario_hace_examen.Remove(Me)
-				End If
-				Me._examen.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.usuario_hace_examen.Add(Me)
-					Me._id_examen = value.id_examen
-				Else
-					Me._id_examen = CType(Nothing, Integer)
-				End If
-				Me.SendPropertyChanged("examen")
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="usuario_usuario_hace_examen", Storage:="_usuario", ThisKey:="nombre_usuario", OtherKey:="nombre_usuario", IsForeignKey:=true)>  _
-	Public Property usuario() As usuario
-		Get
-			Return Me._usuario.Entity
-		End Get
-		Set
-			Dim previousValue As usuario = Me._usuario.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._usuario.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._usuario.Entity = Nothing
-					previousValue.usuario_hace_examen.Remove(Me)
-				End If
-				Me._usuario.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.usuario_hace_examen.Add(Me)
-					Me._nombre_usuario = value.nombre_usuario
-				Else
-					Me._nombre_usuario = CType(Nothing, String)
-				End If
-				Me.SendPropertyChanged("usuario")
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
 	End Sub
 End Class
 

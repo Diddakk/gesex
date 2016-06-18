@@ -24,12 +24,14 @@
                                            Select e).ToList
 
             Dim bdr As New StringBuilder
-            bdr.Append("<div>")
+
+            bdr.Append("<div class=""col-md-12 contenedor mostrarExamenesDiv"">")
+            bdr.Append("<h4>Exámenes</h4>")
             bdr.Append("<ul>")
             For Each ex As examen In exam
 
                 bdr.Append("<li>")
-                bdr.AppendFormat("<a href='ExamenProfesor.aspx?id_examen={0}&nombre_examen={1}'>{1}</a>", ex.id_examen, ex.nombre_examen)
+                bdr.AppendFormat("<a href='ExamenProfesor.aspx?id_examen={0}&nombre_examen={1}&clave_asignatura={2}'>{1}</a>", ex.id_examen, ex.nombre_examen, claveAsignatura)
                 bdr.Append("</li>")
 
             Next
@@ -82,16 +84,5 @@
 
     End Sub
 
-
-    Protected Sub verCrearExamenEventMethod(ByVal sender As Object, ByVal e As System.EventArgs) Handles verCrearExamenButton.Click
-        crearExamenVisible()
-    End Sub
-    Private Sub crearExamenVisible()
-        If crearExamenPlaceHolder.Visible = False Then
-            crearExamenPlaceHolder.Visible = True
-        Else
-            crearExamenPlaceHolder.Visible = False
-        End If
-    End Sub
 
 End Class

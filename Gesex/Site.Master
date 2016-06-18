@@ -20,10 +20,18 @@
     <form id="form1" runat="server">        
         <header>
             <nav class="container-fluid">
-                <h2 class="pull-left"><a href="/Default.aspx">GESEX</a></h2>
-                <%If Not String.IsNullOrWhiteSpace(Session("s_nombre")) Then%>
-                <asp:Label ID="usuarioLabel" Text="Usuario no válido" runat="server" />
-                <asp:Button ID="logoutButton" CssClass="btn btn-default" Text="Salir" runat="server" OnClick="logoutEventMethod" CausesValidation="False" />
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                    <h2 class="pull-left"><a href="/Default.aspx">GESEX</a></h2>
+                    </div>
+                    <%If Not HttpContext.Current.Request.Url.AbsoluteUri.Contains("Default") AndAlso Not HttpContext.Current.Request.Url.AbsoluteUri.Contains("Registro") Then%>
+                    <div class="col-xs-6 col-md-4 nombreMasterDiv">
+                        <asp:Label ID="usuarioLabel" CssClass="text-center" Text="" runat="server" />
+                    </div>
+                    <div class="col-xs-6 col-md-4 logoutMaster">
+                        <asp:Button ID="logoutButton" CssClass="btn btn-default pull-right" Text="Salir" runat="server" OnClick="logoutEventMethod" CausesValidation="False" />
+                    </div>
+                </div>
                 <%End If %>
             </nav>
             
@@ -41,6 +49,7 @@
     </footer>
     <script src="/scripts/jquery-2.2.4.js"></script>
     <script src="/scripts/bootstrap.min.js"></script>    
+    <script src="/scripts/script.js"></script>
     <asp:ContentPlaceHolder ID="JqueryStuff" runat="server">
     </asp:ContentPlaceHolder>
 </body>
