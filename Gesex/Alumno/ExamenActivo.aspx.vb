@@ -56,6 +56,8 @@ Public Class ExamenActivo
                                                          Where p.id_examen = idExamen And p.validada = True
                                                          Select p).ToList
 
+                    Shuffle(pregList)
+
                     For Each p As pregunta In pregList
 
 
@@ -67,6 +69,7 @@ Public Class ExamenActivo
                         Dim respList As List(Of respuesta) = (From r As respuesta In context.respuesta
                                                               Where r.id_examen = idExamen And r.id_pregunta = p.id_pregunta And r.nombre_usuario = profe
                                                               Select r).ToList
+                        Shuffle(respList)
                         For Each r As respuesta In respList
 
                             bdr.Append("<li>")
@@ -197,6 +200,19 @@ Public Class ExamenActivo
         context.usuario_hace_examen.InsertOnSubmit(ponerNota)
         context.SubmitChanges()
 
+    End Sub
+
+    Sub Shuffle(Of T)(list As IList(Of T))
+        Dim r As Random = New Random()
+        For i = 0 To list.Count - 1
+            Dim index As Integer = r.Next(i, list.Count)
+            If i <> index Then
+                ' swap list(i) and list(index)
+                Dim temp As T = list(i)
+                list(i) = list(index)
+                list(index) = temp
+            End If
+        Next
     End Sub
 
 End Class
