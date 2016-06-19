@@ -44,7 +44,9 @@
 
                 'Next
 
-                MsgBox("Ya ha entregado las preguntas de este examen")
+                'MsgBox("Ya ha entregado las preguntas de este examen")
+                FailureText.Text = "Ningún examen disponible"
+                ErrorMessage.Visible = True
 
             Else
 

@@ -19,7 +19,7 @@
         </asp:PlaceHolder>
         <asp:PlaceHolder runat="server" ID="PreguntasYRespuestasPlaceHolder" Visible="true" />
         <div>
-            <asp:Button ID="EnviarPregYRespButton" runat="server" Text="Enviar" />
+            <asp:Button ID="EnviarPregYRespButton" CssClass="btn btn-default" runat="server" Text="Enviar" />
         </div>
         
     </div>

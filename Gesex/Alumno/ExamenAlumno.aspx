@@ -16,3 +16,6 @@
         <asp:Button ID="EnviarPregYRespButton" CssClass="btn btn-default" runat="server" Text="Enviar" />
     </div>
 </asp:Content>
+<asp:Content ID="JqFun" ContentPlaceHolderID="JqueryStuff" runat="server">
+ 
+</asp:Content>

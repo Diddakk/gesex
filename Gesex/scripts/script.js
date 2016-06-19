@@ -1,10 +1,13 @@
 ﻿$(function () {
-    console.log("ready!");
+    //console.log("ready!");
 });
 
 $("#loginButton").click(function () {
     $(".infoDiv").toggleClass("hidden");
     $(".loginDiv").toggleClass("hidden");
+    $(this).text(function (i, text) {
+        return text === "Entrar" ? "Inicio" : "Entrar";
+    })
 });
 
 $("#verInscribirseButton").click(function () {
@@ -52,6 +55,49 @@ $("#verValidarExamenesButton").click(function () {
         return text === "Notas" ? "Examen" : "Notas";
     })
 });
+
+
+/*Validar preguntas y respuestas del alumno*/
+
+$("#MainContent_EnviarPregYRespButton").click(function (e) {
+    
+    var chivato = 0;
+    $('#pyrVal').find('input, textarea').each(function () {
+
+        
+        if (($.trim($(this).val()) == '')) {
+            $(this).addClass("red")
+            chivato = chivato + 1;
+        } else {
+            $(this).removeClass("red");
+        }
+        
+
+    });
+    //var valid = $("#pyrVal :input").filter(function () {
+    //    return $.trim($(this).val()).length == 0
+    //}).length == 0;
+
+    if (chivato > 0) {
+        e.preventDefault();
+        alert("Hay " + chivato + " preguntas o respuestas vacias");
+
+    }else{
+       
+        alert("Todo ok");
+
+    }
+    console.log(chivato);
+
+});
+
+
+
+
+
+
+
+
 
 
 

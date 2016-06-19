@@ -25,3 +25,8 @@
     margin-top: 10px;
     margin-right: 10px;
 }
+input.red, textarea.red, li.red {
+    
+    border: 2px solid red;
+
+}

@@ -19,25 +19,21 @@
             
         <div class="col-md-10 col-md-offset-1 contenedor infoDiv">
             <p>
-                Gesex es una aplicación web de gestión de exámenes colaborativa.
+                Gesex es una aplicación web de gestión de exámenes colaborativa en la que alumnos y profesores 
+                colaboran para crear y hacer exámenes. Mediante esta colaboración, se reduce considerablemente la carga 
+                de trabajo, permitiendo al profesor dedicar más tiempo a preparar las clases y no a la tediosa tarea de 
+                corregir las mismas preguntas para cada uno de sus alumnos.
             </p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vulputate rhoncus est nec dapibus. 
-            In hac habitasse platea dictumst. Curabitur quam orci, molestie in vulputate ac, imperdiet at dolor. 
-            Mauris a erat at justo ultrices maximus a sit amet tortor. Donec pulvinar hendrerit ex, quis maximus 
-            massa ultricies ac. Nulla facilisi. Nunc eu aliquam elit. Ut vulputate feugiat dapibus. Quisque egestas 
-            massa scelerisque, egestas velit a, dignissim ipsum. Morbi quis est ultricies, ornare felis eu, efficitur 
-            ante. Maecenas tempor dignissim imperdiet. Morbi consequat fermentum sem eu finibus. Nam auctor a risus vitae 
-            facilisis. Vivamus consequat elementum urna quis gravida. Quisque dictum lorem eu tortor sagittis imperdiet.
+                El Profesor ha de crear una asignatura y para ella, crear exámenes. Estos exámenes estarán 
+                compuestos por preguntas que envíen los alumnos. El Profesor hará una selección de preguntas y el 
+                día del examen, lo activará. Luego podrá ver las notas de cada uno de sus alumnos.
             </p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vulputate rhoncus est nec dapibus. 
-            In hac habitasse platea dictumst. Curabitur quam orci, molestie in vulputate ac, imperdiet at dolor. 
-            Mauris a erat at justo ultrices maximus a sit amet tortor. Donec pulvinar hendrerit ex, quis maximus 
-            massa ultricies ac. Nulla facilisi. Nunc eu aliquam elit. Ut vulputate feugiat dapibus. Quisque egestas 
-            massa scelerisque, egestas velit a, dignissim ipsum. Morbi quis est ultricies, ornare felis eu, efficitur 
-            ante. Maecenas tempor dignissim imperdiet. Morbi consequat fermentum sem eu finibus. Nam auctor a risus vitae 
-            facilisis. Vivamus consequat elementum urna quis gravida. Quisque dictum lorem eu tortor sagittis imperdiet.
+                El Alumno, tendrá que inscribirse en una asignatura para poder acceder a los examenes. Enviará tres 
+                preguntas con tres respuestas cada una, que posteriormente serán validadas si el Profesor así lo considera.
+                Cuando tenga un examen activo en su listado, podrá acceder a él y hacer el examen. Luego podrá ver sus notas 
+                en la pestaña correspondiente de la aplicación
             </p>
         </div>
     

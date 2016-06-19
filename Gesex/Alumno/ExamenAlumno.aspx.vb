@@ -25,7 +25,7 @@
                                     Where p.nombre_usuario = nombreUsuario And p.id_examen = idExamen
                                     Select p).Any
 
-            bdr.Append("<div>")
+            bdr.Append("<div id=""pyrVal"" >")
             bdr.Append("<ul>")
 
             If check Then
@@ -49,10 +49,14 @@
                     bdr.AppendFormat("<textarea class=""form-control"" rows=""3""  id='p{0}' name='p{0}' type='text'></textarea><p>", i)
                     bdr.Append("<ul>")
                     For j As Integer = 1 To 3
+                        Dim radioCh As String = String.Empty
+                        If j = 1 Then
+                            radioCh = "checked"
+                        End If
 
                         bdr.Append("<li>")
                         bdr.AppendFormat("<p>Respuesta Nº{0}</p>", j)
-                        bdr.AppendFormat("<p><input class=""pull-left"" id='p{0}r{1}c' name='p{0}c' value='p{0}r{1}' type='radio'>", i, j)
+                        bdr.AppendFormat("<p><input class=""pull-left"" id='p{0}r{1}c' name='p{0}c' value='p{0}r{1}' type='radio' {2}>", i, j, radioCh)
                         bdr.AppendFormat("<input id='p{0}r{1}' class=""form-control"" name='p{0}r{1}' type='text'></p>", i, j)
                         bdr.Append("</li>")
 
