@@ -74,20 +74,13 @@ $("#MainContent_EnviarPregYRespButton").click(function (e) {
         
 
     });
-    //var valid = $("#pyrVal :input").filter(function () {
-    //    return $.trim($(this).val()).length == 0
-    //}).length == 0;
 
     if (chivato > 0) {
         e.preventDefault();
         alert("Hay " + chivato + " preguntas o respuestas vacias");
-
-    }else{
-       
-        alert("Todo ok");
-
+            
     }
-    console.log(chivato);
+    //console.log(chivato);
 
 });
 
