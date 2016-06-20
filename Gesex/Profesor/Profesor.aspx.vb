@@ -34,6 +34,7 @@ Public Class Profesor
                 nombreAsignaturaTextBox.Text = String.Empty
                 FailureText.Text = String.Empty
                 ErrorMessage.Visible = False
+                Response.Redirect(HttpContext.Current.Request.Url.ToString(), True)
             Catch ex As Exception
                 FailureText.Text = "Ha habido un problema inscribiéndose en la asignatura"
                 ErrorMessage.Visible = True

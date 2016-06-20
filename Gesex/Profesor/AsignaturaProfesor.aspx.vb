@@ -71,16 +71,18 @@
             FailureText.Text = String.Empty
             ErrorMessage.Visible = False
 
+            Dim hace As New usuario_hace_examen With {
+            .id_examen = exam.id_examen,
+            .nombre_usuario = nombreUsuario}
+            context.usuario_hace_examen.InsertOnSubmit(hace)
+            context.SubmitChanges()
+            Response.Redirect(HttpContext.Current.Request.Url.ToString(), True)
+
         Catch ex As Exception
             FailureText.Text = "No se ha podido crear el examen"
             ErrorMessage.Visible = True
         End Try
 
-        Dim hace As New usuario_hace_examen With {
-            .id_examen = exam.id_examen,
-            .nombre_usuario = nombreUsuario}
-        context.usuario_hace_examen.InsertOnSubmit(hace)
-        context.SubmitChanges()
 
     End Sub
 

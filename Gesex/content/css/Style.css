@@ -30,3 +30,7 @@ input.red, textarea.red, li.red {
     border: 2px solid red;
 
 }
+.nota{
+    float:right;
+    margin-right:20px;
+}

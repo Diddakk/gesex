@@ -29,6 +29,7 @@ Public Class ctlInscribirseEnAsignatura
             nombreAsignaturaTextBox.Text = String.Empty
             FailureText.Text = String.Empty
             ErrorMessage.Visible = False
+            Response.Redirect(HttpContext.Current.Request.Url.ToString(), True)
         Catch ex As Exception
             FailureText.Text = "No puede inscribirse dos veces en una asignatura"
             ErrorMessage.Visible = True
