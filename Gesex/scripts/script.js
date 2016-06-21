@@ -45,7 +45,7 @@ $("#verCrearExamenButton").click(function () {
     $(".crearExamenDiv").toggleClass("hidden");
     $(".mostrarExamenesDiv").toggleClass("hidden");
     $(this).text(function (i, text) {
-        return text === "Nuevo Examen" ? "Exámenes" : "Nuevo Examen";
+        return text === "Exámenes" ? "Nuevo Examen" : "Exámenes";
     })
 });
 $("#verValidarExamenesButton").click(function () {
